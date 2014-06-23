@@ -15,10 +15,9 @@ import org.apache.hadoop.mapreduce.Mapper;
  * Inputs data on page correspondences between different versions of Diderot's
  * <em>Éléments de Physiologie</em> from Jean Mayer's &quot;La composition
  * fragmentaire des Éléments de Physiologie&quot;,
- * <em>Studies on Voltaire and the 18th Century</em>, (1988). This class is 
- * responsible for the first part of the cycle, mapping the page entry of the 
- * Herbert Dieckmann version to a collection containing the Vandeul (V) and 
- * Leningrad (L) editions.
+ * <em>Studies on Voltaire and the 18th Century</em>, (1988). This class is
+ * responsible for mapping the page entry of the Herbert Dieckmann version to a
+ * collection containing the Vandeul (V) and Leningrad (L) editions.
  * 
  * @author Gregory Bringman
  */
@@ -61,7 +60,8 @@ public class ElementsVersionsMapper extends
 			return;
 		}
 
-		ElementsStringArrayWritable versions = new ElementsStringArrayWritable(new String[]{split[1], split[2]});
+		ElementsStringArrayWritable versions = new ElementsStringArrayWritable(
+				new String[] { split[1], split[2] });
 
 		context.write(ElementsUtils.fetchPage(split[0]), versions);
 	}

@@ -25,19 +25,16 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ElementsVersionsMapperTest {
 
-	private final String data = 
-			"15 à 306, 7:11v:32,1-18\n"
-					+ "319, 1-4::345, 15-19\n"
-					+ "5-7::30, 15-18\n"
-					+ "8-10::338, 4-8\n"
-					+ "11-19:21r:332, 9 à 333, 1\n"
-					+ "20-23::303, 15-22";
+	private final String data = "15 à 306, 7:11v:32,1-18\n"
+			+ "319, 1-4::345, 15-19\n" + "5-7::30, 15-18\n"
+			+ "8-10::338, 4-8\n" + "11-19:21r:332, 9 à 333, 1\n"
+			+ "20-23::303, 15-22";
 
 	ElementsVersionsMapper mapper;
 	ElementsVersionsReducer reducer;
 	ElementsStringArrayWritable keys;
-	ElementsStringArrayWritable  one;
-	ElementsStringArrayWritable  two;
+	ElementsStringArrayWritable one;
+	ElementsStringArrayWritable two;
 	Writable[] versions, expected;
 
 	@Before
@@ -45,20 +42,20 @@ public class ElementsVersionsMapperTest {
 
 		mapper = new ElementsVersionsMapper();
 		reducer = new ElementsVersionsReducer();
-		keys = new ElementsStringArrayWritable(new String[]{"306, 7", "319, 1-4"});
-		one = new ElementsStringArrayWritable(new String[]{"11v","32,1-18"});
-		two = new ElementsStringArrayWritable(new String[]{"","345,15-19"});
-		versions = new Writable[]{one, two};
-		expected = new Writable[]{one, two};
+		keys = new ElementsStringArrayWritable(new String[] { "306, 7", "319, 1-4" });
+		one = new ElementsStringArrayWritable(new String[] { "11v", "32,1-18" });
+		two = new ElementsStringArrayWritable(new String[] { "", "345,15-19" });
+		versions = new Writable[] { one, two };
+		expected = new Writable[] { one, two };
 	}
 
 	/*
-	 * Test that the mapper correctly places pages numbers into Hadoop 
-	 * {@link ArrayWritable} instances with the correct values.
+	 * Test that the mapper correctly places pages numbers into Hadoop {@link
+	 * ArrayWritable} instances with the correct values.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void map()  throws IOException, InterruptedException {
+	public void map() throws IOException, InterruptedException {
 
 		String[] lines = data.split("\n");
 
@@ -71,12 +68,13 @@ public class ElementsVersionsMapperTest {
 	}
 
 	/*
-	 * Test that the mapper does not write the record to the context because its 
+	 * Test that the mapper does not write the record to the context because its
 	 * data line is commented out in the input source.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void mapWithCommentedRecord() throws IOException, InterruptedException {
+	public void mapWithCommentedRecord() throws IOException,
+			InterruptedException {
 
 		String line = keys.toStrings()[0];
 		Text value = new Text("#" + line);
@@ -84,16 +82,18 @@ public class ElementsVersionsMapperTest {
 		ElementsVersionsMapper.Context context = mock(ElementsVersionsMapper.Context.class);
 
 		mapper.map(null, value, context);
-		verify(context, never()).write(ElementsUtils.fetchPage(line.toString()), one);
+		verify(context, never()).write(
+				ElementsUtils.fetchPage(line.toString()), one);
 	}
 
 	/*
-	 * Test that the mapper does not write the record to the context because this record has 
-	 * more than three elements.
+	 * Test that the mapper does not write the record to the context because
+	 * this record has more than three elements.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void mapWithTooManyVersions() throws IOException, InterruptedException {
+	public void mapWithTooManyVersions() throws IOException,
+			InterruptedException {
 
 		String[] lines = data.split("\n");
 
@@ -102,7 +102,8 @@ public class ElementsVersionsMapperTest {
 		ElementsVersionsMapper.Context context = mock(ElementsVersionsMapper.Context.class);
 
 		mapper.map(null, value, context);
-		verify(context, never()).write(ElementsUtils.fetchPage(value.toString()), one);
+		verify(context, never()).write(
+				ElementsUtils.fetchPage(value.toString()), one);
 	}
 
 	@After

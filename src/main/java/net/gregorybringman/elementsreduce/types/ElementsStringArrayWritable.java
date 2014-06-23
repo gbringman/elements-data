@@ -5,11 +5,11 @@ import java.util.Arrays;
 import org.apache.hadoop.io.ArrayWritable;
 
 /**
- * A child wrapper around {@link ArrayWritable} that permits a client to compare 
+ * A child wrapper around {@link ArrayWritable} that permits a client to compare
  * its instances with a simple invocation of {@link ArrayWritable#equals}.
  * 
  * @author Gregory Bringman
- *
+ * 
  */
 public class ElementsStringArrayWritable extends ArrayWritable {
 	public ElementsStringArrayWritable(String[] items) {
@@ -17,20 +17,23 @@ public class ElementsStringArrayWritable extends ArrayWritable {
 	}
 
 	/**
-	 * <p>Equality in this overriden {#equals} method is a result of an 
-	 * {@link Arrays#deepEquals} comparison on the ArrayWritable values 
-	 * rendered as {@link String} objects.
+	 * <p>
+	 * Equality in this overriden {#equals} method is a result of an
+	 * {@link Arrays#deepEquals} comparison on the ArrayWritable values rendered
+	 * as {@link String} objects.
 	 * 
 	 */
 
 	@Override
 	public int hashCode() {
-		return Arrays.deepHashCode(this.toStrings());	
+		return Arrays.deepHashCode(this.toStrings());
 	}
 
 	/**
-	 * <p>Equality in this overriden {#equals} method is a result of an 
-	 * {@link Arrays#deepEquals} comparison</p>
+	 * <p>
+	 * Equality in this overriden {#equals} method is a result of an
+	 * {@link Arrays#deepEquals} comparison
+	 * </p>
 	 * 
 	 */
 	@Override

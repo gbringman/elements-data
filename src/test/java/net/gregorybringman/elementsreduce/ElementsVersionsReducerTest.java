@@ -35,8 +35,8 @@ public class ElementsVersionsReducerTest {
 	ElementsVersionsMapper mapper;
 	ElementsVersionsReducer reducer;
 	ArrayWritable keys;
-	ArrayWritable  one;
-	ArrayWritable  two;
+	ArrayWritable one;
+	ArrayWritable two;
 	Writable[] versions, expected;
 	MapWritable entry;
 	String pageKey = "30";
@@ -45,23 +45,23 @@ public class ElementsVersionsReducerTest {
 	public void setUp() {
 
 		reducer = new ElementsVersionsReducer();
-		keys = new ArrayWritable(new String[]{"319, 1-4", "319, 5-7"});
-		one = new ArrayWritable(new String[]{"","345, 15-19"});
-		two = new ArrayWritable(new String[]{"", pageKey + ",15-18"});
-		versions = new Writable[]{one, two};
-		expected = new Writable[]{one, two};
+		keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
+		one = new ArrayWritable(new String[] { "", "345, 15-19" });
+		two = new ArrayWritable(new String[] { "", pageKey + ",15-18" });
+		versions = new Writable[] { one, two };
+		expected = new Writable[] { one, two };
 		entry = new MapWritable();
 	}
 
 	/**
-	 * Test that a POS is created that becomes the key to the line ranges of 
-	 * markers to insert into sample text from the Vandeul (V) and Leningrad (L) 
+	 * Test that a POS is created that becomes the key to the line ranges of
+	 * markers to insert into sample text from the Vandeul (V) and Leningrad (L)
 	 * editions.
 	 * 
-	 * @throws IOException 
-	 * 		If the reduced data cannot be added to the Hadoop context.
-	 * @throws InterruptedException 
-	 * 		If the reduced data cannot be added to the Hadoop context.
+	 * @throws IOException
+	 *             If the reduced data cannot be added to the Hadoop context.
+	 * @throws InterruptedException
+	 *             If the reduced data cannot be added to the Hadoop context.
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -79,7 +79,8 @@ public class ElementsVersionsReducerTest {
 			ArrayWritable l = (ArrayWritable) w;
 
 			String L = l.get()[1].toString();
-			entry.put(new Text(ElementsUtils.posMatch(L.toString())  + "_" + count), ElementsUtils.fetchRange(L.toString()));
+			entry.put(new Text(ElementsUtils.posMatch(L.toString()) + "_"
+					+ count), ElementsUtils.fetchRange(L.toString()));
 			count++;
 		}
 
@@ -87,7 +88,8 @@ public class ElementsVersionsReducerTest {
 
 		ArrayWritable aw = mock(ArrayWritable.class);
 		when(context.getCurrentValue()).thenReturn(aw);
-		when(context.getCurrentKey()).thenReturn(new IntWritable(new Integer(pageKey)));
+		when(context.getCurrentKey()).thenReturn(
+				new IntWritable(new Integer(pageKey)));
 		when(aw.toStrings()).thenReturn(two.toStrings());
 
 		context.getCurrentValue();

@@ -13,8 +13,8 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Writable;
 
 /**
- * Provides utility methods for creating data types needed by 
- * each stage of map / reduce, and needed for textual markup.
+ * Provides utility methods for creating data types needed by each stage of map
+ * / reduce, and needed for textual markup.
  * 
  * @author Gregory Bringman
  */
@@ -23,6 +23,7 @@ public class ElementsUtils {
 	public static final String RANGE_TAG_BEGIN = "<div class=\"range\">";
 	public static final String RANGE_TAG_END = "</div>";
 	public static final String MATCH_FAILURE_CODE = "NaN";
+
 	public static String posMatch(String text) {
 
 		Map<String, Pattern> pos = ElementsGrammar.grammarAsMap();
@@ -43,9 +44,8 @@ public class ElementsUtils {
 	 * {@link ArrayWritable}.
 	 * 
 	 * @param text
-	 * 		The string with a range of the format &quot;1-4&quot;
-	 * @return
-	 * 		The {@link ArrayWritable} range.
+	 *            The string with a range of the format &quot;1-4&quot;
+	 * @return The {@link ArrayWritable} range.
 	 */
 	public static ArrayWritable fetchRange(String text) {
 
@@ -60,7 +60,8 @@ public class ElementsUtils {
 			end = Integer.parseInt(split[1]);
 		}
 
-		ArrayWritable range = new ArrayWritable(new String[] {String.valueOf(start), String.valueOf(end)});
+		ArrayWritable range = new ArrayWritable(new String[] {
+				String.valueOf(start), String.valueOf(end) });
 		return range;
 	}
 
@@ -68,14 +69,14 @@ public class ElementsUtils {
 	 * Parse a {@link ElementsGrammar#PAGE} into a Hadoop {@link IntWritable}.
 	 * 
 	 * @param text
-	 * 		The string with a range of the format {@link ElementsGrammar#PAGE}.
-	 * @return
-	 * 		The {@link IntWritable} range.
+	 *            The string with a range of the format
+	 *            {@link ElementsGrammar#PAGE}.
+	 * @return The {@link IntWritable} range.
 	 */
 	public static IntWritable fetchPage(String text) {
 
 		String delim = ",";
-		
+
 		Matcher m = ElementsGrammar.PAGE.matcher(text);
 
 		int pageNo = 0;
@@ -84,12 +85,12 @@ public class ElementsUtils {
 			String page = m.group(0);
 			String sansSpace = page.replaceAll("\\s", "");
 			int to = sansSpace.indexOf("à");
-			if ( to > -1) {
+			if (to > -1) {
 				page = sansSpace.substring(to + 1);
 			}
-			
-			page = page.indexOf(delim) > -1 ? 
-				   page.substring(0, page.indexOf(delim)) : page.trim();
+
+			page = page.indexOf(delim) > -1 ? page.substring(0,
+					page.indexOf(delim)) : page.trim();
 			pageNo = Integer.parseInt(page);
 		}
 
@@ -97,16 +98,15 @@ public class ElementsUtils {
 	}
 
 	/**
-	 * Given a range tag definition, insert its opening and closing forms 
-	 * around a portion of text. Translate all structural characteristics 
-	 * implied by the Mayer data on fragments, i.e. line span, etc.
+	 * Given a range tag definition, insert its opening and closing forms around
+	 * a portion of text. Translate all structural characteristics implied by
+	 * the Mayer data on fragments, i.e. line span, etc.
 	 * 
 	 * @param pageModel
-	 * 		A {@link Map} of page keys and their range values.
+	 *            A {@link Map} of page keys and their range values.
 	 * @param text
-	 * 		The text to populate with range tag identifiers.
-	 * @return
-	 * 		The marked up text.
+	 *            The text to populate with range tag identifiers.
+	 * @return The marked up text.
 	 */
 	public static String markupPages(MapWritable pageModel, String text) {
 
@@ -121,7 +121,7 @@ public class ElementsUtils {
 		for (Writable range : pageModel.values()) {
 
 			Writable[] rng = ((ArrayWritable) range).get();
-			
+
 			int start = Integer.parseInt(rng[0].toString());
 			int end = Integer.parseInt(rng[1].toString());
 
@@ -148,21 +148,21 @@ public class ElementsUtils {
 	/**
 	 * Convenience method providing some text of Éléments de Physiologie.
 	 * 
-	 * This text will receive the range markup described by the previous 
-	 * map / reduce stage's POS models.
+	 * This text will receive the range markup described by the previous map /
+	 * reduce stage's POS models.
 	 * 
 	 * @return A dummy segment of Éléments de Physiologie.
 	 */
 	public static String fetchTextOfPage() {
-		
-		return "Mr *** conceived of the project of drawing up the elements of physiology while \n" +
-				"reading the works of Baron de Haller.  For several months, he collected what \n" +
-				"seemed to him appropriate or essential to put in these elements: notes and extracts \n" +
-				"were jotted down on a few isolated pages.  Death having prevented Mr *** from realizing\n" +
-				" the project, for which he only happened to prepare the material, these notes are \n" +
-				"believed to be united in a single copy.  No doubt incomplete, and  despite their lack of \n" +
-				"order, it is thought that the public will nevertheless receive these fragments with \n" +
-				"pleasure, and that one day someone will undertake, after the plan and ideas of Mr ***, \n" +
-				"the work he had only sketched.";
+
+		return "Mr *** conceived of the project of drawing up the elements of physiology while \n"
+				+ "reading the works of Baron de Haller.  For several months, he collected what \n"
+				+ "seemed to him appropriate or essential to put in these elements: notes and extracts \n"
+				+ "were jotted down on a few isolated pages.  Death having prevented Mr *** from realizing\n"
+				+ " the project, for which he only happened to prepare the material, these notes are \n"
+				+ "believed to be united in a single copy.  No doubt incomplete, and  despite their lack of \n"
+				+ "order, it is thought that the public will nevertheless receive these fragments with \n"
+				+ "pleasure, and that one day someone will undertake, after the plan and ideas of Mr ***, \n"
+				+ "the work he had only sketched.";
 	}
 }

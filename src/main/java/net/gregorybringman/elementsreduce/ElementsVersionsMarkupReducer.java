@@ -11,9 +11,9 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 /**
  * Takes part-of-speech models of Jean Mayer's data on page correspondences
- * between versions of Diderot's Éléments de Physiologie (from a previous 
- * map / reduce phase) and adds markers representing them into the text of 
- * the Éléments de Physiologie.
+ * between versions of Diderot's Éléments de Physiologie (from a previous map /
+ * reduce phase) and adds markers representing them into the text of the
+ * Éléments de Physiologie.
  * 
  * @author Gregory Bringman
  */
@@ -22,15 +22,15 @@ public class ElementsVersionsMarkupReducer extends
 
 	/**
 	 * For each page of DPV mark up each line range from each version, V and L,
-	 * with the custom POS of the model in order to re-present Mayer's data on 
+	 * with the custom POS of the model in order to re-present Mayer's data on
 	 * page correspondences into the text of the Elements itself.
 	 */
-	public void reduce(IntWritable pageNo,
-			MapWritable values,
-			Context context)
+	public void reduce(IntWritable pageNo, MapWritable values, Context context)
 			throws IOException, InterruptedException {
-		
-		context.write(pageNo, 
-			new Text(ElementsUtils.markupPages(values, ElementsUtils.fetchTextOfPage())));
+
+		context.write(
+				pageNo,
+				new Text(ElementsUtils.markupPages(values,
+						ElementsUtils.fetchTextOfPage())));
 	}
 }

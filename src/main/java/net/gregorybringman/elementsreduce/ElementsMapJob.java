@@ -12,11 +12,11 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
- * Runs ElementsVersions map-reduce with a input data set of the format used 
- * in {@link elements-data-2012-06-23_pipe_delim.txt}.
+ * Runs ElementsVersions map-reduce with a input data set of the format used in
+ * {@link elements-data-2012-06-23_pipe_delim.txt}.
  * 
  * @author Gregory Bringman
- *
+ * 
  */
 public class ElementsMapJob {
 
@@ -30,7 +30,7 @@ public class ElementsMapJob {
 		}
 
 		setSerializations(conf);
-		
+
 		Job job = new Job(conf, "Elements Map");
 		job.setNumReduceTasks(0);
 		job.setJarByClass(ElementsMapJob.class);
@@ -44,14 +44,15 @@ public class ElementsMapJob {
 
 		job.setOutputKeyClass(IntWritable.class);
 		job.setOutputValueClass(Map.class);
-		
+
 		FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
-	
+
 	private static void setSerializations(Configuration conf) {
-		conf.set("io.serializations", 
-		"org.apache.hadoop.io.serializer.WritableSerialization, org.apache.hadoop.io.serializer.JavaSerialization");		
+		conf.set(
+				"io.serializations",
+				"org.apache.hadoop.io.serializer.WritableSerialization, org.apache.hadoop.io.serializer.JavaSerialization");
 	}
 }
