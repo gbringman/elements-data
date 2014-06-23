@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Writable;
  * A child wrapper around {@link MapWritable} that permits a client to compare 
  * its instances with a simple invocation of {@link ElementsMapWritable#equals}.
  * 
- * @author gregorybringman
+ * @author Gregory Bringman
  *
  */
 public class ElementsMapWritable extends MapWritable {

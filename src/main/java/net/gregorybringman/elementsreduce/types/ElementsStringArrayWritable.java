@@ -4,6 +4,13 @@ import java.util.Arrays;
 
 import org.apache.hadoop.io.ArrayWritable;
 
+/**
+ * A child wrapper around {@link ArrayWritable} that permits a client to compare 
+ * its instances with a simple invocation of {@link ArrayWritable#equals}.
+ * 
+ * @author Gregory Bringman
+ *
+ */
 public class ElementsStringArrayWritable extends ArrayWritable {
 	public ElementsStringArrayWritable(String[] items) {
 		super(items);

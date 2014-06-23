@@ -22,7 +22,8 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- *
+ * Tests the {@link ElementsUtils} class.
+ * 
  * @author Gregory Bringman
  */
 @RunWith(MockitoJUnitRunner.class)

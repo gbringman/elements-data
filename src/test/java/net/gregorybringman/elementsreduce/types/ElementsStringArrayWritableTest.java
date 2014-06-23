@@ -4,6 +4,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the {@link ElementsStringArrayWritable} class.
+ * 
+ * @author Gregory Bringman
+ *
+ */
 public class ElementsStringArrayWritableTest {
 
 	private ElementsStringArrayWritable arrayWritable;

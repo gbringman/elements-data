@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Tests the {@link ElementsMapWritable} class.
  * 
- * @author gregorybringman
+ * @author Gregory Bringman
  *
  */
 public class ElementsMapWritableTest {

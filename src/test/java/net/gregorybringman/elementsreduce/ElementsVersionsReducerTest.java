@@ -22,7 +22,8 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- *
+ * Tests the {@link ElementsVersionsReducer} class.
+ * 
  * @author Gregory Bringman
  */
 @RunWith(MockitoJUnitRunner.class)

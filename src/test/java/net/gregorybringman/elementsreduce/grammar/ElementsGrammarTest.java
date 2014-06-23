@@ -8,6 +8,7 @@ import org.junit.Test;
 
 /**
  * Tests the {@link ElementsGrammar} class.
+ * 
  * @author Gregory Bringman
  *
  */
