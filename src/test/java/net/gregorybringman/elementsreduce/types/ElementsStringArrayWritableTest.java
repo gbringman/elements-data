@@ -11,6 +11,11 @@ public class ElementsStringArrayWritableTest {
 	private ElementsStringArrayWritable identical2;
 	private ElementsStringArrayWritable different;
 
+	/*
+	 * Test that hash codes of identical {@link ElementsStringArrayWritable} 
+	 * objects are equal and that hash codes of different 
+ 	 * {@link ElementsStringArrayWritable} objects are NOT equal.
+	 */
 	@Before
 	public void setUp() {
 		
@@ -22,6 +27,10 @@ public class ElementsStringArrayWritableTest {
 		different = new ElementsStringArrayWritable(new String[]{"1-6", "7-15"});
 	}
 
+	/*
+	 * Test that the equals method evaluates to {@link Boolean.TRUE} when two 
+	 * {@link ElementsMapWritable} instances are equal, to {@link Boolean.FALSE}
+	 */
 	@Test
 	public void hashcode() {
 		Assert.assertTrue(arrayWritable.hashCode() == identical.hashCode());

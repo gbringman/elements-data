@@ -52,6 +52,10 @@ public class ElementsUtilsTest {
 		expectedText = "<div class=\"range\">A\nB\nC\nD</div><div class=\"range\">E\nF\nG\nH</div>";
 	}
 
+	/*
+	 * Test that the line range for a page correspondence entry (with both 
+	 * pages and line numbers) is extracted from the source data.
+	 */
 	@Test
 	public void testFetchRange() {
 
@@ -61,6 +65,11 @@ public class ElementsUtilsTest {
 		assertEquals("Created Range is incorrect", expected.getValueClass(), range.getValueClass());
 	}
 
+	/*
+	 * Test the {@link Pattern} objects created from the regex equivalents of the 
+	 * {@link ElementsGrammar} detect their respective parts of (page equivalence) 
+	 * text.
+	 */
 	@Test
 	public void testPosMatch() {
 
@@ -79,6 +88,11 @@ public class ElementsUtilsTest {
 		assertEquals("Part of speech does not match.", pos, ElementsUtils.posMatch("Ch.II Tissue cellulaire"));
 	}
 
+	/*
+	 * Test that the range tags around the text to mark up correspond to the 
+	 * POS model page and line ranges.
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testMarkupPages() throws IOException, InterruptedException {

@@ -5,6 +5,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the {@link ElementsMapWritable} class.
+ * 
+ * @author gregorybringman
+ *
+ */
 public class ElementsMapWritableTest {
 	
 	private final Text key = new Text("key");
@@ -37,6 +43,11 @@ public class ElementsMapWritableTest {
 		different2.put(key2, value2);
 	}
 
+	/*
+	 * Test that hash codes of identical {@link ElementsMapWritable} objects 
+	 * are equal and that hash codes of different {@link ElementsMapWritable} 
+	 * objects are not equal.
+	 */
 	@Test
 	public void hashcode() {
 		Assert.assertTrue(mapWritable.hashCode() == identical.hashCode());
@@ -49,6 +60,10 @@ public class ElementsMapWritableTest {
 		Assert.assertFalse(mapWritable.hashCode() == new String().hashCode());
 	}
 	
+	/*
+	 * Test that the equals method evaluates to {@link Boolean.TRUE} when two 
+	 * {@link ElementsMapWritable} instances are equal, to {@link Boolean.FALSE}
+	 */
 	@Test
 	public void equals() {
 		

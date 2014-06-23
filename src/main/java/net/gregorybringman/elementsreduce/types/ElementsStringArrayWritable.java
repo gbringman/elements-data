@@ -9,11 +9,23 @@ public class ElementsStringArrayWritable extends ArrayWritable {
 		super(items);
 	}
 
+	/**
+	 * <p>Equality in this overriden {#equals} method is a result of an 
+	 * {@link Arrays#deepEquals} comparison on the ArrayWritable values 
+	 * rendered as {@link String} objects.
+	 * 
+	 */
+
 	@Override
 	public int hashCode() {
 		return Arrays.deepHashCode(this.toStrings());	
 	}
 
+	/**
+	 * <p>Equality in this overriden {#equals} method is a result of an 
+	 * {@link Arrays#deepEquals} comparison</p>
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

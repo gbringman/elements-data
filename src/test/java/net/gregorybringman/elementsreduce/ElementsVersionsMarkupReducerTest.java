@@ -17,6 +17,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the {@link ElementsVersionsMarkupReducer} class.
+ * 
+ * @author Gregory Bringman
+ */
 public class ElementsVersionsMarkupReducerTest {
 
 	ElementsVersionsMapper mapper;
@@ -48,6 +53,10 @@ public class ElementsVersionsMarkupReducerTest {
 		entry = new MapWritable();
 	}
 
+	/*
+	 * Test that the POS models do match, in line range, the text of 
+	 * the Éléments de Physiologie to which they are applied.
+	 */
 	@Test
 	public void reduce() throws IOException, InterruptedException {
 		String page = "";

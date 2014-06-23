@@ -6,8 +6,18 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Tests the {@link ElementsGrammar} class.
+ * @author Gregory Bringman
+ *
+ */
 public class ElementsGrammarTest {
 	
+	/*
+	 * Test that the instance of the grammar returned from 
+	 * {@link ElementsGrammar#grammarAsMap} contains all 
+	 * the POS keys of the grammar definition.
+	 */
 	@Test
 	public void grammarAsMap() {
 		Map<String, Pattern> grammar = ElementsGrammar.grammarAsMap();
@@ -16,6 +26,10 @@ public class ElementsGrammarTest {
 		}
 	}
 	
+	/*
+	 * Test that the same grammar object reference is always returned upon 
+	 * subsequent calls to {@link ElementsGrammar#grammarAsMap()}.
+	 */
 	@Test
 	public void grammarAsMapIdempotent() {
 		Map<String, Pattern> grammar1 = ElementsGrammar.grammarAsMap();

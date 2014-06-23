@@ -18,7 +18,8 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- *
+ * Tests the {@link ElementsVersionsMapper} class.
+ * 
  * @author Gregory Bringman
  */
 @RunWith(MockitoJUnitRunner.class)

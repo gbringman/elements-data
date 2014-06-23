@@ -14,7 +14,7 @@ import org.apache.hadoop.io.Writable;
 
 /**
  * Provides utility methods for creating data types needed by 
- * each stage of map / reduce, and for textual markup.
+ * each stage of map / reduce, and needed for textual markup.
  * 
  * @author Gregory Bringman
  */
@@ -145,6 +145,14 @@ public class ElementsUtils {
 		return markedUp;
 	}
 
+	/**
+	 * Convenience method providing some text of Éléments de Physiologie.
+	 * 
+	 * This text will receive the range markup described by the previous 
+	 * map / reduce stage's POS models.
+	 * 
+	 * @return A dummy segment of Éléments de Physiologie.
+	 */
 	public static String fetchTextOfPage() {
 		
 		return "Mr *** conceived of the project of drawing up the elements of physiology while \n" +

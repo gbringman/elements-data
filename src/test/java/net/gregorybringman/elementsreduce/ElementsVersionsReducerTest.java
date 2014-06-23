@@ -52,9 +52,19 @@ public class ElementsVersionsReducerTest {
 		entry = new MapWritable();
 	}
 
+	/**
+	 * Test that a POS is created that becomes the key to the line ranges of 
+	 * markers to insert into sample text from the Vandeul (V) and Leningrad (L) 
+	 * editions.
+	 * 
+	 * @throws IOException 
+	 * 		If the reduced data cannot be added to the Hadoop context.
+	 * @throws InterruptedException 
+	 * 		If the reduced data cannot be added to the Hadoop context.
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testTagging() throws IOException, InterruptedException {
+	public void reduce() throws IOException, InterruptedException {
 
 		ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
 

@@ -10,9 +10,10 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 /**
- * Creates part-of-speech models of Jean Mayer's data on page correspondences
- * between versions of Diderot's Éléments de Physiologie and adds them into the
- * text of the Éléments de Physiologie.
+ * Takes part-of-speech models of Jean Mayer's data on page correspondences
+ * between versions of Diderot's Éléments de Physiologie (from a previous 
+ * map / reduce phase) and adds markers representing them into the text of 
+ * the Éléments de Physiologie.
  * 
  * @author Gregory Bringman
  */

@@ -51,7 +51,7 @@ public class ElementsGrammar {
 
 	/**
 	 * Bundle and return all rules of the grammar. Only populate the map the 
-	 * first time that {@link ElementsGrammar#grammarAsMap()} is called.
+	 * first time for which {@link ElementsGrammar#grammarAsMap()} is called.
 	 * 
 	 * @return
 	 * 		A {@link Map} of the bundled grammar.
