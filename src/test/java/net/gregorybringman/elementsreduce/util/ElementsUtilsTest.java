@@ -58,7 +58,7 @@ public class ElementsUtilsTest {
      * and line numbers in the source) is extracted.
      */
     @Test
-    public void testFetchRange() {
+    public void fetchRange() {
 
         ArrayWritable range = ElementsUtils.fetchRange("30, 15-18");
         ArrayWritable expected = new ArrayWritable(new String[] { "15", "18" });
@@ -73,7 +73,7 @@ public class ElementsUtilsTest {
      * equivalence) text.
      */
     @Test
-    public void testPosMatch() {
+    public void posMatch() {
 
         String pos = "page";
         assertEquals("Part of speech does not match.", pos,
@@ -108,7 +108,7 @@ public class ElementsUtilsTest {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void testMarkupPages() throws IOException, InterruptedException {
+    public void markupPages() throws IOException, InterruptedException {
 
         String page = "";
 
