@@ -64,7 +64,7 @@ public class ElementsUtilsTest {
         ArrayWritable expected = new ArrayWritable(new String[] { "15", "18" });
 
         assertEquals("Created Range is incorrect", expected.getValueClass(),
-                range.getValueClass());
+            range.getValueClass());
     }
 
     /*
@@ -131,9 +131,10 @@ public class ElementsUtilsTest {
                     ElementsUtils.fetchRange(L));
             count++;
         }
+        
         verify(context).write(eq(pageNo), any(MapWritable.class));
 
         assertEquals("Text incorrectly marked up!", expectedText,
-                ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
+            ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
     }
 }
