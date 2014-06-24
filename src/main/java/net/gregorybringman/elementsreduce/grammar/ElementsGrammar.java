@@ -26,31 +26,29 @@ public class ElementsGrammar {
     public static final String PAGE_TYPE = "r|v";
 
     public static final Pattern PAGE = Pattern.compile(LINE_OR_PAGE
-            + PAGE_TO_PAGE + "*" + LINE_OR_PAGE + "+" + LEVEL_DELIMITER + "");
+        + PAGE_TO_PAGE + "*" + LINE_OR_PAGE + "+" + LEVEL_DELIMITER + "");
     public static final Pattern PAGE_WITH_TEXT = Pattern.compile(LINE_OR_PAGE
-            + LEVEL_DELIMITER + TEXT + OR + LINE_OR_PAGE + LEVEL_DELIMITER
-            + LINE_OR_PAGE + TEXT);
+        + LEVEL_DELIMITER + TEXT + OR + LINE_OR_PAGE + LEVEL_DELIMITER
+        + LINE_OR_PAGE + TEXT);
     public static final Pattern PAGE_WITH_LINE_RANGE = Pattern
-            .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE
-                    + RANGE_DELIMITER + LINE_OR_PAGE);
+        .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE
+        + RANGE_DELIMITER + LINE_OR_PAGE);
     public static final Pattern PAGE_AND_LINE_TO_PAGE_AND_LINE = Pattern
-            .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE
-                    + PAGE_TO_PAGE + LINE_OR_PAGE + LEVEL_DELIMITER
-                    + LINE_OR_PAGE);
+        .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE
+        + PAGE_TO_PAGE + LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE);
     public static final Pattern LINE_RANGE = Pattern.compile(LINE_OR_PAGE
-            + RANGE_DELIMITER + LINE_OR_PAGE);
+        + RANGE_DELIMITER + LINE_OR_PAGE);
     public static final Pattern LINE_TO_PAGE_WITH_LINE = Pattern
-            .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE + "*"
-                    + PAGE_TO_PAGE + LINE_OR_PAGE + LEVEL_DELIMITER
-                    + LINE_OR_PAGE);
+        .compile(LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE + "*"
+        + PAGE_TO_PAGE + LINE_OR_PAGE + LEVEL_DELIMITER + LINE_OR_PAGE);
     public static final Pattern STRUCTURAL_TEXT = Pattern.compile(TEXT);
     public static final Pattern FOLIO_PAGE = Pattern.compile(PAGE_RECTO + OR
-            + PAGE_VERSO);
+        + PAGE_VERSO);
 
     private static final Map<String, Pattern> grammar = Maps.newHashMap();
     public static final String[] GRAMMAR_KEYS = { "page", "pagewtext",
-            "pagewlinerng", "pagelinetopageline", "linerng", "linetopagewline",
-            "structuraltext" };
+        "pagewlinerng", "pagelinetopageline", "linerng", "linetopagewline",
+        "structuraltext" };
 
     /**
      * Bundle and return all rules of the grammar. Only populate the map the

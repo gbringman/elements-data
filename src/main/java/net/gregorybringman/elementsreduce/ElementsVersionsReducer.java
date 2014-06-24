@@ -18,7 +18,7 @@ import org.apache.hadoop.mapreduce.Reducer;
  * @author Gregory Bringman
  */
 public class ElementsVersionsReducer extends
-        Reducer<IntWritable, ArrayWritable, IntWritable, MapWritable> {
+    Reducer<IntWritable, ArrayWritable, IntWritable, MapWritable> {
 
     /**
      * <p>
@@ -33,7 +33,7 @@ public class ElementsVersionsReducer extends
      * </p>
      */
     public void reduce(IntWritable pageNo, ArrayWritable values, Context context)
-            throws IOException, InterruptedException {
+        throws IOException, InterruptedException {
 
         MapWritable entry = new MapWritable();
 

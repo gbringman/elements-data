@@ -77,24 +77,29 @@ public class ElementsUtilsTest {
 
         String pos = "page";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("319,"));
+            ElementsUtils.posMatch("319,"));
+        
         pos = "pagewtext";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("319, Avertissement"));
+            ElementsUtils.posMatch("319, Avertissement"));
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("319, 320 Ch I"));
+            ElementsUtils.posMatch("319, 320 Ch I"));
+        
         pos = "pagewlinerng";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("319, 1-4"));
+            ElementsUtils.posMatch("319, 1-4"));
+        
         pos = "pagelinetopageline";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("320 à 321, 13"));
+            ElementsUtils.posMatch("320 à 321, 13"));
+        
         pos = "linerng";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("1-4"));
+            ElementsUtils.posMatch("1-4"));
+        
         pos = "structuraltext";
         assertEquals("Part of speech does not match.", pos,
-                ElementsUtils.posMatch("Ch.II Tissue cellulaire"));
+            ElementsUtils.posMatch("Ch.II Tissue cellulaire"));
     }
 
     /*
