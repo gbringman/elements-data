@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.gregorybringman.elementsreduce.grammar.ElementsGrammar;
+import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
@@ -47,7 +48,7 @@ public class ElementsUtils {
      *            The string with a range of the format &quot;1-4&quot;
      * @return The {@link ArrayWritable} range.
      */
-    public static ArrayWritable fetchRange(String text) {
+    public static ElementsStringArrayWritable fetchRange(String text) {
 
         Matcher m = ElementsGrammar.LINE_RANGE.matcher(text);
 
@@ -60,7 +61,7 @@ public class ElementsUtils {
             end = Integer.parseInt(split[1]);
         }
 
-        ArrayWritable range = new ArrayWritable(new String[] {
+        ElementsStringArrayWritable range = new ElementsStringArrayWritable(new String[] {
                 String.valueOf(start), String.valueOf(end) });
         return range;
     }

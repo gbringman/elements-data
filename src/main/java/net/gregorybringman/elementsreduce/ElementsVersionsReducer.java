@@ -2,6 +2,7 @@ package net.gregorybringman.elementsreduce;
 
 import java.io.IOException;
 
+import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.util.ElementsUtils;
 
 import org.apache.hadoop.io.ArrayWritable;
@@ -35,7 +36,7 @@ public class ElementsVersionsReducer extends
     public void reduce(IntWritable pageNo, ArrayWritable values, Context context)
         throws IOException, InterruptedException {
 
-        MapWritable entry = new MapWritable();
+        ElementsMapWritable entry = new ElementsMapWritable();
 
         int count = 1;
 

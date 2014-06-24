@@ -1,17 +1,15 @@
 package net.gregorybringman.elementsreduce;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 
+import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.util.ElementsUtils;
 
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.junit.After;
@@ -38,7 +36,7 @@ public class ElementsVersionsReducerTest {
     ArrayWritable one;
     ArrayWritable two;
     Writable[] versions, expected;
-    MapWritable entry;
+    ElementsMapWritable entry;
     String pageKey = "30";
 
     @Before
@@ -49,8 +47,8 @@ public class ElementsVersionsReducerTest {
         one = new ArrayWritable(new String[] { "", "345, 15-19" });
         two = new ArrayWritable(new String[] { "", pageKey + ",15-18" });
         versions = new Writable[] { one, two };
-        expected = new Writable[] { one, two };
-        entry = new MapWritable();
+        expected = new Writable[] { one };
+        entry = new ElementsMapWritable();
     }
 
     /**
@@ -79,12 +77,14 @@ public class ElementsVersionsReducerTest {
             ArrayWritable l = (ArrayWritable) w;
 
             String L = l.get()[1].toString();
-            entry.put(new Text(ElementsUtils.posMatch(L.toString()) + "_"
-                    + count), ElementsUtils.fetchRange(L.toString()));
-            count++;
+            String match = ElementsUtils.posMatch(L.toString());
+            if (match.indexOf(ElementsUtils.MATCH_FAILURE_CODE) < 0) {
+                entry.put(new Text( match + "_" + count), ElementsUtils.fetchRange(L));
+                count++;
+            }
         }
 
-        verify(context).write(eq(pageNo), any(MapWritable.class));
+        verify(context).write(pageNo, entry);
     }
 
     @After
