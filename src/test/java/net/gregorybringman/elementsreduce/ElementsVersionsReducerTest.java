@@ -29,73 +29,66 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ElementsVersionsReducerTest {
 
-	@SuppressWarnings("unused")
-	private final String data = "319, 1-4::345, 15-19\n5-7::30, 15-18\n8-10::338, 4-8\n11-19:21r:332, 9 à 333, 1\n20-23::303, 15-22";
+    @SuppressWarnings("unused")
+    private final String data = "319, 1-4::345, 15-19\n5-7::30, 15-18\n8-10::338, "
+                              + "4-8\n11-19:21r:332, 9 à 333, 1\n20-23::303, 15-22";
 
-	ElementsVersionsMapper mapper;
-	ElementsVersionsReducer reducer;
-	ArrayWritable keys;
-	ArrayWritable one;
-	ArrayWritable two;
-	Writable[] versions, expected;
-	MapWritable entry;
-	String pageKey = "30";
+    ElementsVersionsMapper mapper;
+    ElementsVersionsReducer reducer;
+    ArrayWritable keys;
+    ArrayWritable one;
+    ArrayWritable two;
+    Writable[] versions, expected;
+    MapWritable entry;
+    String pageKey = "30";
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		reducer = new ElementsVersionsReducer();
-		keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
-		one = new ArrayWritable(new String[] { "", "345, 15-19" });
-		two = new ArrayWritable(new String[] { "", pageKey + ",15-18" });
-		versions = new Writable[] { one, two };
-		expected = new Writable[] { one, two };
-		entry = new MapWritable();
-	}
+        reducer = new ElementsVersionsReducer();
+        keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
+        one = new ArrayWritable(new String[] { "", "345, 15-19" });
+        two = new ArrayWritable(new String[] { "", pageKey + ",15-18" });
+        versions = new Writable[] { one, two };
+        expected = new Writable[] { one, two };
+        entry = new MapWritable();
+    }
 
-	/**
-	 * Test that a POS is created that becomes the key to the line ranges of
-	 * markers to insert into sample text from the Vandeul (V) and Leningrad (L)
-	 * editions.
-	 * 
-	 * @throws IOException
-	 *             If the reduced data cannot be added to the Hadoop context.
-	 * @throws InterruptedException
-	 *             If the reduced data cannot be added to the Hadoop context.
-	 */
-	@SuppressWarnings("unchecked")
-	@Test
-	public void reduce() throws IOException, InterruptedException {
+    /**
+     * Test that a POS is created that becomes the key to the line ranges of
+     * markers to insert into sample text from the Vandeul (V) and Leningrad (L)
+     * editions.
+     * 
+     * @throws IOException
+     *             If the reduced data cannot be added to the Hadoop context.
+     * @throws InterruptedException
+     *             If the reduced data cannot be added to the Hadoop context.
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void reduce() throws IOException, InterruptedException {
 
-		ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
+        ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
 
-		IntWritable pageNo = ElementsUtils.fetchPage(keys.toStrings()[0]);
+        IntWritable pageNo = ElementsUtils.fetchPage(keys.toStrings()[0]);
 
-		reducer.reduce(pageNo, one, context);
+        reducer.reduce(pageNo, one, context);
 
-		int count = 1;
-		for (Writable w : expected) {
+        int count = 1;
+        for (Writable w : expected) {
 
-			ArrayWritable l = (ArrayWritable) w;
+            ArrayWritable l = (ArrayWritable) w;
 
-			String L = l.get()[1].toString();
-			entry.put(new Text(ElementsUtils.posMatch(L.toString()) + "_"
-					+ count), ElementsUtils.fetchRange(L.toString()));
-			count++;
-		}
+            String L = l.get()[1].toString();
+            entry.put(new Text(ElementsUtils.posMatch(L.toString()) + "_"
+                    + count), ElementsUtils.fetchRange(L.toString()));
+            count++;
+        }
 
-		verify(context).write(eq(pageNo), any(MapWritable.class));
+        verify(context).write(eq(pageNo), any(MapWritable.class));
+    }
 
-		ArrayWritable aw = mock(ArrayWritable.class);
-		when(context.getCurrentValue()).thenReturn(aw);
-		when(context.getCurrentKey()).thenReturn(
-				new IntWritable(new Integer(pageKey)));
-		when(aw.toStrings()).thenReturn(two.toStrings());
-
-		context.getCurrentValue();
-	}
-
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 }

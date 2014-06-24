@@ -29,106 +29,106 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ElementsUtilsTest {
 
-	ElementsVersionsMapper mapper;
-	ElementsVersionsReducer reducer;
-	ArrayWritable keys;
-	ArrayWritable one;
-	ArrayWritable two;
-	Writable[] versions, expected;
-	MapWritable entry;
-	String expectedText;
+    ElementsVersionsMapper mapper;
+    ElementsVersionsReducer reducer;
+    ArrayWritable keys;
+    ArrayWritable one;
+    ArrayWritable two;
+    Writable[] versions, expected;
+    MapWritable entry;
+    String expectedText;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		mapper = new ElementsVersionsMapper();
-		reducer = new ElementsVersionsReducer();
-		keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
-		one = new ArrayWritable(new String[] { "", "345, 15-19" });
-		two = new ArrayWritable(new String[] { "", "30,15-18" });
-		versions = new Writable[] { one, two };
-		expected = new Writable[] { one, two };
+        mapper = new ElementsVersionsMapper();
+        reducer = new ElementsVersionsReducer();
+        keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
+        one = new ArrayWritable(new String[] { "", "345, 15-19" });
+        two = new ArrayWritable(new String[] { "", "30,15-18" });
+        versions = new Writable[] { one, two };
+        expected = new Writable[] { one, two };
 
-		entry = new MapWritable();
-		expectedText = "<div class=\"range\">A\nB\nC\nD</div><div class=\"range\">E\nF\nG\nH</div>";
-	}
+        entry = new MapWritable();
+        expectedText = "<div class=\"range\">A\nB\nC\nD</div><div class=\"range\">E\nF\nG\nH</div>";
+    }
 
-	/*
-	 * Test that the line range for a page correspondence entry (with both pages
-	 * and line numbers in the source) is extracted.
-	 */
-	@Test
-	public void testFetchRange() {
+    /*
+     * Test that the line range for a page correspondence entry (with both pages
+     * and line numbers in the source) is extracted.
+     */
+    @Test
+    public void testFetchRange() {
 
-		ArrayWritable range = ElementsUtils.fetchRange("30, 15-18");
-		ArrayWritable expected = new ArrayWritable(new String[] { "15", "18" });
+        ArrayWritable range = ElementsUtils.fetchRange("30, 15-18");
+        ArrayWritable expected = new ArrayWritable(new String[] { "15", "18" });
 
-		assertEquals("Created Range is incorrect", expected.getValueClass(),
-				range.getValueClass());
-	}
+        assertEquals("Created Range is incorrect", expected.getValueClass(),
+                range.getValueClass());
+    }
 
-	/*
-	 * Test that the {@link Pattern} objects created from the RegEx equivalents of
-	 * the {@link ElementsGrammar} detect their respective parts of (page
-	 * equivalence) text.
-	 */
-	@Test
-	public void testPosMatch() {
+    /*
+     * Test that the {@link Pattern} objects created from the RegEx equivalents
+     * of the {@link ElementsGrammar} detect their respective parts of (page
+     * equivalence) text.
+     */
+    @Test
+    public void testPosMatch() {
 
-		String pos = "page";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("319,"));
-		pos = "pagewtext";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("319, Avertissement"));
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("319, 320 Ch I"));
-		pos = "pagewlinerng";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("319, 1-4"));
-		pos = "pagelinetopageline";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("320 à 321, 13"));
-		pos = "linerng";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("1-4"));
-		pos = "structuraltext";
-		assertEquals("Part of speech does not match.", pos,
-				ElementsUtils.posMatch("Ch.II Tissue cellulaire"));
-	}
+        String pos = "page";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("319,"));
+        pos = "pagewtext";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("319, Avertissement"));
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("319, 320 Ch I"));
+        pos = "pagewlinerng";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("319, 1-4"));
+        pos = "pagelinetopageline";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("320 à 321, 13"));
+        pos = "linerng";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("1-4"));
+        pos = "structuraltext";
+        assertEquals("Part of speech does not match.", pos,
+                ElementsUtils.posMatch("Ch.II Tissue cellulaire"));
+    }
 
-	/*
-	 * Test that the range tags around the text to be marked up correspond to the POS
-	 * model page and line ranges.
-	 */
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testMarkupPages() throws IOException, InterruptedException {
+    /*
+     * Test that the range tags around the text to be marked up correspond to
+     * the POS model page and line ranges.
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testMarkupPages() throws IOException, InterruptedException {
 
-		String page = "";
+        String page = "";
 
-		for (int i = 0; i < 8; i++) {
-			page = page + "line" + i + "\n";
-		}
+        for (int i = 0; i < 8; i++) {
+            page = page + "line" + i + "\n";
+        }
 
-		ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
+        ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
 
-		IntWritable pageNo = ElementsUtils.fetchPage(keys.get()[0].toString());
-		reducer.reduce(pageNo, one, context);
+        IntWritable pageNo = ElementsUtils.fetchPage(keys.get()[0].toString());
+        reducer.reduce(pageNo, one, context);
 
-		int count = 1;
-		for (Writable w : expected) {
+        int count = 1;
+        for (Writable w : expected) {
 
-			ArrayWritable l = (ArrayWritable) w;
+            ArrayWritable l = (ArrayWritable) w;
 
-			String L = l.get()[1].toString();
-			entry.put(new Text(ElementsUtils.posMatch(L) + "_" + count),
-					ElementsUtils.fetchRange(L));
-			count++;
-		}
-		verify(context).write(eq(pageNo), any(MapWritable.class));
+            String L = l.get()[1].toString();
+            entry.put(new Text(ElementsUtils.posMatch(L) + "_" + count),
+                    ElementsUtils.fetchRange(L));
+            count++;
+        }
+        verify(context).write(eq(pageNo), any(MapWritable.class));
 
-		assertEquals("Text incorrectly marked up!", expectedText,
-				ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
-	}
+        assertEquals("Text incorrectly marked up!", expectedText,
+                ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
+    }
 }
