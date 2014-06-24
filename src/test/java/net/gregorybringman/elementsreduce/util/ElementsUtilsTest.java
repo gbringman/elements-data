@@ -55,7 +55,7 @@ public class ElementsUtilsTest {
 
 	/*
 	 * Test that the line range for a page correspondence entry (with both pages
-	 * and line numbers) is extracted from the source data.
+	 * and line numbers in the source) is extracted.
 	 */
 	@Test
 	public void testFetchRange() {
@@ -68,7 +68,7 @@ public class ElementsUtilsTest {
 	}
 
 	/*
-	 * Test the {@link Pattern} objects created from the regex equivalents of
+	 * Test that the {@link Pattern} objects created from the RegEx equivalents of
 	 * the {@link ElementsGrammar} detect their respective parts of (page
 	 * equivalence) text.
 	 */
@@ -98,7 +98,7 @@ public class ElementsUtilsTest {
 	}
 
 	/*
-	 * Test that the range tags around the text to mark up correspond to the POS
+	 * Test that the range tags around the text to be marked up correspond to the POS
 	 * model page and line ranges.
 	 */
 	@SuppressWarnings("unchecked")
