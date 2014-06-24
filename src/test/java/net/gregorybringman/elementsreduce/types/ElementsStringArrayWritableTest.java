@@ -33,10 +33,6 @@ public class ElementsStringArrayWritableTest {
 		different = new ElementsStringArrayWritable(new String[] { "1-6", "7-15" });
 	}
 
-	/*
-	 * Test that the equals method evaluates to {@link Boolean.TRUE} when two
-	 * {@link ElementsMapWritable} instances are equal, to {@link Boolean.FALSE}
-	 */
 	@Test
 	public void hashcode() {
 		Assert.assertTrue(arrayWritable.hashCode() == identical.hashCode());
@@ -50,6 +46,11 @@ public class ElementsStringArrayWritableTest {
 		Assert.assertFalse(arrayWritable.hashCode() == new String().hashCode());
 	}
 
+    /*
+     * Test that the equals method evaluates to {@link Boolean.TRUE} when two
+     * {@link ElementsStringArrayWritable} instances are equal, to 
+     * {@link Boolean.FALSE}
+     */
 	@Test
 	public void equals() {
 		Assert.assertTrue(arrayWritable.equals(identical));
@@ -57,7 +58,6 @@ public class ElementsStringArrayWritableTest {
 		Assert.assertTrue(arrayWritable.equals(arrayWritable));
 		Assert.assertTrue(arrayWritable.equals(arrayWritable)
 				&& identical.equals(identical2));
-
 		Assert.assertFalse(arrayWritable.equals(different));
 		Assert.assertFalse(arrayWritable.equals(null));
 		Assert.assertFalse(arrayWritable.equals(new String()));
