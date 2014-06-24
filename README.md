@@ -1,6 +1,8 @@
 elements-data
 =============
 
+June 14, 2014
+
 Project applying big data processing to page correspondence data for versions of Diderot's Éléments de Physiologie.
 
 The project is incomplete, but represents a draft of processing methods under the map reduce paradigm for the data 
@@ -17,5 +19,6 @@ short of full integration testing of the mark up functionality. I envision that 
 upon YARN and be one of many processing techniques in the project, and having initiated "elements-data" as a public 
 project, its development will visit, then, full integration testing of the markup functionality.
 
+Scan of Mayer's article provided under fair use. All rights reserved, Studies on Voltaire and the 18th Century.
+
 Gregory Bringman
-June 14, 2014
