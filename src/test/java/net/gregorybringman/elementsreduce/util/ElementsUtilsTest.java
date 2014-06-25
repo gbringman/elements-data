@@ -1,12 +1,17 @@
 package net.gregorybringman.elementsreduce.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
+import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
 import org.apache.hadoop.io.ArrayWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,8 +33,8 @@ public class ElementsUtilsTest {
     @Before
     public void setUp() {
 
-        ArrayWritable one = new ArrayWritable(new String[] { "", "345, 15-19" });
-        ArrayWritable two = new ArrayWritable(new String[] { "", "30,15-18" });
+        ElementsStringArrayWritable one = new ElementsStringArrayWritable(new String[] { "", "345, 15-19" });
+        ElementsStringArrayWritable two = new ElementsStringArrayWritable(new String[] { "", "30,15-18" });
         
         entry = new ElementsMapWritable();
         expected = new Writable[] { one, two };
@@ -102,5 +107,20 @@ public class ElementsUtilsTest {
         
         assertEquals("Text incorrectly marked up!", expectedText,
             ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
+    }
+    
+    @Test
+    public void populateEntry() {
+        ElementsStringArrayWritable range = mock(ElementsStringArrayWritable.class);
+        Writable[] expectedRanges = new Writable[] { range, range };
+
+        ElementsMapWritable emw = mock(ElementsMapWritable.class);
+        String [] stringRanges = new String[] { "", "1, 4-6" };
+        
+        when(range.toStrings()).thenReturn(stringRanges);
+        
+        ElementsUtils.populateEntry(emw, expectedRanges);
+        
+        verify(emw).put(new Text("pagewlinerng_1"), ElementsUtils.fetchRange(stringRanges[1]));
     }
 }

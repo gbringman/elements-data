@@ -151,14 +151,13 @@ public class ElementsUtils {
     public static void populateEntry(ElementsMapWritable e, Writable[] expectedRanges) {
         int count = 1;
         for (Writable w : expectedRanges) {
-
-            ArrayWritable l = (ArrayWritable) w;
-
-            String L = l.get()[1].toString();
-            String match = ElementsUtils.posMatch(L.toString());
-            if (match.indexOf(MATCH_FAILURE_CODE) < 0) {
-                e.put(new Text( match + "_" + count), ElementsUtils.fetchRange(L));
-                count++;
+            ElementsStringArrayWritable l = (ElementsStringArrayWritable) w;
+            for (String range : l.toStrings()) {
+                String match = ElementsUtils.posMatch(range);
+                if (match.indexOf(MATCH_FAILURE_CODE) < 0) {
+                    e.put(new Text( match + "_" + count), ElementsUtils.fetchRange(range.toString()));
+                    count++;
+                }
             }
         }
     }

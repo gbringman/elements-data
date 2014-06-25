@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 import java.io.IOException;
 
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
+import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 import net.gregorybringman.elementsreduce.util.ElementsUtils;
 
-import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
@@ -24,9 +24,9 @@ import org.junit.Test;
 public class ElementsVersionsMarkupReducerTest {
 
     ElementsVersionsMarkupReducer reducer;
-    ArrayWritable keys;
-    ArrayWritable one;
-    ArrayWritable two;
+    ElementsStringArrayWritable keys;
+    ElementsStringArrayWritable one;
+    ElementsStringArrayWritable two;
     Writable[] expected;
     ElementsMapWritable entry;
     
@@ -41,9 +41,9 @@ public class ElementsVersionsMarkupReducerTest {
     public void setUp() {
 
         reducer = new ElementsVersionsMarkupReducer();
-        keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
-        one = new ArrayWritable(new String[] { "", "1, 4-6" });
-        two = new ArrayWritable(new String[] { "", "30,15-18" });
+        keys = new ElementsStringArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
+        one = new ElementsStringArrayWritable(new String[] { "", "1, 4-6" });
+        two = new ElementsStringArrayWritable(new String[] { "", "30,15-18" });
         expected = new Writable[] { one, two };
 
         entry = new ElementsMapWritable();

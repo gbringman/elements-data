@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 import java.io.IOException;
 
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
+import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 import net.gregorybringman.elementsreduce.util.ElementsUtils;
 
-import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Writable;
 import org.junit.After;
@@ -26,8 +26,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class ElementsVersionsReducerTest {
 
     ElementsVersionsReducer reducer;
-    ArrayWritable keys;
-    ArrayWritable one;
+    ElementsStringArrayWritable keys;
+    ElementsStringArrayWritable one;
     Writable[] expected;
     ElementsMapWritable entry;
 
@@ -35,8 +35,8 @@ public class ElementsVersionsReducerTest {
     public void setUp() {
 
         reducer = new ElementsVersionsReducer();
-        keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
-        one = new ArrayWritable(new String[] { "", "345, 15-19" });
+        keys = new ElementsStringArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
+        one = new ElementsStringArrayWritable(new String[] { "", "345, 15-19" });
         expected = new Writable[] { one};
         entry = new ElementsMapWritable();
     }
