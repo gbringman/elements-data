@@ -8,7 +8,6 @@ import net.gregorybringman.elementsreduce.util.ElementsUtils;
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 
@@ -37,18 +36,8 @@ public class ElementsVersionsReducer extends
         throws IOException, InterruptedException {
 
         ElementsMapWritable entry = new ElementsMapWritable();
-
-        int count = 1;
-
-        for (Writable t : values.get()) {
-            String in = t.toString();
-            String match = ElementsUtils.posMatch(in);
-            if (match.indexOf(ElementsUtils.MATCH_FAILURE_CODE) < 0) {
-                entry.put(new Text(match + "_" + count),
-                        ElementsUtils.fetchRange(in));
-                count++;
-            }
-        }
+        ElementsUtils.populateEntry(entry, new Writable[]{values});
+        
         context.write(pageNo, entry);
     }
 }

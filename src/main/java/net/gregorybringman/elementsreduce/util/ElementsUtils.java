@@ -6,11 +6,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.gregorybringman.elementsreduce.grammar.ElementsGrammar;
+import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
 import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 
 /**
@@ -144,6 +146,21 @@ public class ElementsUtils {
         }
 
         return markedUp;
+    }
+
+    public static void populateEntry(ElementsMapWritable e, Writable[] expectedRanges) {
+        int count = 1;
+        for (Writable w : expectedRanges) {
+
+            ArrayWritable l = (ArrayWritable) w;
+
+            String L = l.get()[1].toString();
+            String match = ElementsUtils.posMatch(L.toString());
+            if (match.indexOf(MATCH_FAILURE_CODE) < 0) {
+                e.put(new Text( match + "_" + count), ElementsUtils.fetchRange(L));
+                count++;
+            }
+        }
     }
 
     /**

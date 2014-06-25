@@ -10,7 +10,6 @@ import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 import net.gregorybringman.elementsreduce.util.ElementsUtils;
 
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,22 +29,15 @@ public class ElementsVersionsMapperTest {
         + "::303, 15-22";
 
     ElementsVersionsMapper mapper;
-    ElementsVersionsReducer reducer;
     ElementsStringArrayWritable keys;
     ElementsStringArrayWritable one;
-    ElementsStringArrayWritable two;
-    Writable[] versions, expected;
 
     @Before
     public void setUp() {
 
         mapper = new ElementsVersionsMapper();
-        reducer = new ElementsVersionsReducer();
         keys = new ElementsStringArrayWritable(new String[] { "306, 7", "319, 1-4" });
         one = new ElementsStringArrayWritable(new String[] { "11v", "32,1-18" });
-        two = new ElementsStringArrayWritable(new String[] { "", "345,15-19" });
-        versions = new Writable[] { one, two };
-        expected = new Writable[] { one, two };
     }
 
     /*

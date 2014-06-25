@@ -1,20 +1,12 @@
 package net.gregorybringman.elementsreduce.util;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.any;
 
 import java.io.IOException;
 
-import net.gregorybringman.elementsreduce.ElementsVersionsMapper;
-import net.gregorybringman.elementsreduce.ElementsVersionsReducer;
+import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 
 import org.apache.hadoop.io.ArrayWritable;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,27 +21,18 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ElementsUtilsTest {
 
-    ElementsVersionsMapper mapper;
-    ElementsVersionsReducer reducer;
-    ArrayWritable keys;
-    ArrayWritable one;
-    ArrayWritable two;
-    Writable[] versions, expected;
-    MapWritable entry;
+    Writable[] expected;
+    ElementsMapWritable entry;
     String expectedText;
 
     @Before
     public void setUp() {
 
-        mapper = new ElementsVersionsMapper();
-        reducer = new ElementsVersionsReducer();
-        keys = new ArrayWritable(new String[] { "319, 1-4", "319, 5-7" });
-        one = new ArrayWritable(new String[] { "", "345, 15-19" });
-        two = new ArrayWritable(new String[] { "", "30,15-18" });
-        versions = new Writable[] { one, two };
+        ArrayWritable one = new ArrayWritable(new String[] { "", "345, 15-19" });
+        ArrayWritable two = new ArrayWritable(new String[] { "", "30,15-18" });
+        
+        entry = new ElementsMapWritable();
         expected = new Writable[] { one, two };
-
-        entry = new MapWritable();
         expectedText = "<div class=\"range\">A\nB\nC\nD</div><div class=\"range\">E\nF\nG\nH</div>";
     }
 
@@ -106,7 +89,6 @@ public class ElementsUtilsTest {
      * Test that the range tags around the text to be marked up correspond to
      * the POS model page and line ranges.
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void markupPages() throws IOException, InterruptedException {
 
@@ -116,24 +98,8 @@ public class ElementsUtilsTest {
             page = page + "line" + i + "\n";
         }
 
-        ElementsVersionsReducer.Context context = mock(ElementsVersionsReducer.Context.class);
-
-        IntWritable pageNo = ElementsUtils.fetchPage(keys.get()[0].toString());
-        reducer.reduce(pageNo, one, context);
-
-        int count = 1;
-        for (Writable w : expected) {
-
-            ArrayWritable l = (ArrayWritable) w;
-
-            String L = l.get()[1].toString();
-            entry.put(new Text(ElementsUtils.posMatch(L) + "_" + count),
-                    ElementsUtils.fetchRange(L));
-            count++;
-        }
+        ElementsUtils.populateEntry(entry, expected);
         
-        verify(context).write(eq(pageNo), any(MapWritable.class));
-
         assertEquals("Text incorrectly marked up!", expectedText,
             ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
     }
