@@ -3,6 +3,7 @@ package net.gregorybringman.elementsreduce.types;
 import java.util.Arrays;
 
 import org.apache.hadoop.io.ArrayWritable;
+import org.apache.hadoop.io.Text;
 
 /**
  * A child wrapper around {@link ArrayWritable} that permits a client to compare
@@ -16,6 +17,10 @@ public class ElementsStringArrayWritable extends ArrayWritable {
         super(items);
     }
 
+    public ElementsStringArrayWritable() {
+        super(Text.class);
+    }
+
     /**
      * <p>
      * The hash code returned by the {this#hashCode} method is a determined by  
@@ -23,7 +28,6 @@ public class ElementsStringArrayWritable extends ArrayWritable {
      * as {@link String} objects. Array values as strings can preserve the 
      * exact data of the ArrayWritable.
      */
-
     @Override
     public int hashCode() {
         return Arrays.deepHashCode(this.toStrings());

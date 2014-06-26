@@ -1,7 +1,7 @@
 package net.gregorybringman.elementsreduce;
 
-import java.util.List;
-import java.util.Map;
+import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
+import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -9,7 +9,6 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
  * Runs the ElementsVersions map-reduce with an input data set of the format used in
@@ -22,17 +21,14 @@ public class ElementsMapJob {
 
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        String[] otherArgs = new GenericOptionsParser(conf, args)
-                .getRemainingArgs();
-        if (otherArgs.length != 2) {
+        
+        if (args.length != 2) {
             System.err.println("Usage: elementsmap <in> <out>");
             System.exit(2);
         }
 
-        setSerializations(conf);
-
         Job job = new Job(conf, "Elements Map");
-        job.setNumReduceTasks(0);
+        job.setNumReduceTasks(1);
         job.setJarByClass(ElementsMapJob.class);
 
         job.setMapperClass(ElementsVersionsMapper.class);
@@ -40,19 +36,13 @@ public class ElementsMapJob {
         job.setReducerClass(ElementsVersionsReducer.class);
 
         job.setMapOutputKeyClass(IntWritable.class);
-        job.setMapOutputValueClass(List.class);
+        job.setMapOutputValueClass(ElementsStringArrayWritable.class);
 
         job.setOutputKeyClass(IntWritable.class);
-        job.setOutputValueClass(Map.class);
+        job.setOutputValueClass(ElementsMapWritable.class);
 
-        FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
-        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
-    }
-
-    private static void setSerializations(Configuration conf) {
-        conf.set(
-                "io.serializations",
-                "org.apache.hadoop.io.serializer.WritableSerialization, org.apache.hadoop.io.serializer.JavaSerialization");
     }
 }
