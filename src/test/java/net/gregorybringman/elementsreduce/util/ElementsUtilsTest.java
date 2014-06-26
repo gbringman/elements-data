@@ -2,15 +2,16 @@ package net.gregorybringman.elementsreduce.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
+import junit.framework.Assert;
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
-import org.apache.hadoop.io.ArrayWritable;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.junit.Before;
@@ -48,11 +49,52 @@ public class ElementsUtilsTest {
     @Test
     public void fetchRange() {
 
-        ArrayWritable range = ElementsUtils.fetchRange("30, 15-18");
-        ArrayWritable expected = new ArrayWritable(new String[] { "15", "18" });
+        ElementsStringArrayWritable actual = ElementsUtils.fetchRange("30, 15-18");
+        ElementsStringArrayWritable expected = new ElementsStringArrayWritable(new String[] { "15", "18" });
 
-        assertEquals("Created Range is incorrect", expected.getValueClass(),
-            range.getValueClass());
+        assertEquals("Created Range is incorrect", expected, actual);
+    }
+
+    @Test
+    public void fetchRangeNoPOSMatch() {
+
+        ElementsStringArrayWritable actual = ElementsUtils.fetchRange("30, 15");
+        
+        // If there is no match, start and end have only values of initialization...
+        ElementsStringArrayWritable expected = new ElementsStringArrayWritable(new String[] { "0", "0" });
+
+        assertEquals("Created Range is incorrect", expected, actual);
+    }
+
+    @Test
+    public void fetchPage() {
+        
+        IntWritable actual = ElementsUtils.fetchPage("30, 15-18");
+        IntWritable expected = new IntWritable(30);
+        
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void fetchPageNoPOSMatch() {
+        
+        IntWritable actual = ElementsUtils.fetchPage("(suite) à");
+
+        // If there is no match, the page has only values of initialization...
+        IntWritable expected = new IntWritable(0);
+        
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void fetchPageWithToText() {
+        
+        IntWritable actual = ElementsUtils.fetchPage("30 à 397");
+        IntWritable expected = new IntWritable(397);
+        IntWritable notExpected = new IntWritable(30);
+        
+        Assert.assertEquals(expected, actual);
+        Assert.assertNotSame(notExpected, actual);
     }
 
     /*

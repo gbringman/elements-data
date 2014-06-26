@@ -148,8 +148,18 @@ public class ElementsUtils {
         return markedUp;
     }
 
+    /**
+     * Perform the work of associating the POS match to its line range.
+     * 
+     * @param e
+     *      The {@link ElementsMapWritable} to populate.
+     * @param expectedRanges
+     *      The raw string data assumed to contain line ranges.
+     */
     public static void populateEntry(ElementsMapWritable e, Writable[] expectedRanges) {
+        
         int count = 1;
+        
         for (Writable w : expectedRanges) {
             ElementsStringArrayWritable l = (ElementsStringArrayWritable) w;
             for (String range : l.toStrings()) {
