@@ -16,16 +16,16 @@ public class ElementsMapWritableTest {
     private final Text key = new Text("key");
     private final Text key2 = new Text("key2");
 
-    private final ElementsStringArrayWritable value = new ElementsStringArrayWritable(
-        new String[] { "1-2", "4-6" });
-    private final ElementsStringArrayWritable value2 = new ElementsStringArrayWritable(
-        new String[] { "1-6", "7-15" });
+    private final ElementsStringArrayWritable value = 
+        new ElementsStringArrayWritable(new String[] { "1-2", "4-6" });
+    private final ElementsStringArrayWritable value2 = 
+        new ElementsStringArrayWritable(new String[] { "1-6", "7-15" });
 
-    private ElementsMapWritable mapWritable = new ElementsMapWritable();
-    private ElementsMapWritable identical = new ElementsMapWritable();
-    private ElementsMapWritable identical2 = new ElementsMapWritable();
-    private ElementsMapWritable different = new ElementsMapWritable();
-    private ElementsMapWritable different2 = new ElementsMapWritable();
+    private ElementsMapWritable mapWritable;
+    private ElementsMapWritable identical;
+    private ElementsMapWritable identical2;
+    private ElementsMapWritable different;
+    private ElementsMapWritable different2;
 
     @Before
     public void setUp() {
@@ -56,7 +56,7 @@ public class ElementsMapWritableTest {
         Assert.assertTrue(mapWritable.hashCode() == identical.hashCode());
         Assert.assertTrue(identical.hashCode() == mapWritable.hashCode());
         Assert.assertTrue(mapWritable.hashCode() == mapWritable.hashCode());
-        Assert.assertTrue(mapWritable.hashCode() == mapWritable.hashCode()
+        Assert.assertTrue(mapWritable.hashCode() == identical.hashCode()
             && identical.hashCode() == identical2.hashCode());
         Assert.assertFalse(mapWritable.hashCode() == different.hashCode());
         Assert.assertFalse(mapWritable.hashCode() == 0);
@@ -75,7 +75,7 @@ public class ElementsMapWritableTest {
         Assert.assertTrue(mapWritable.equals(identical));
         Assert.assertTrue(identical.equals(mapWritable));
         Assert.assertTrue(mapWritable.equals(mapWritable));
-        Assert.assertTrue(mapWritable.equals(mapWritable) && identical.equals(identical2));
+        Assert.assertTrue(mapWritable.equals(identical) && identical.equals(identical2));
         Assert.assertFalse(mapWritable.equals(different));
         Assert.assertFalse(mapWritable.equals(null));
         Assert.assertFalse(mapWritable.equals(new String()));

@@ -39,7 +39,7 @@ public class ElementsStringArrayWritableTest {
         Assert.assertTrue(arrayWritable.hashCode() == identical.hashCode());
         Assert.assertTrue(identical.hashCode() == arrayWritable.hashCode());
         Assert.assertTrue(arrayWritable.hashCode() == arrayWritable.hashCode());
-        Assert.assertTrue(arrayWritable.hashCode() == arrayWritable.hashCode()
+        Assert.assertTrue(arrayWritable.hashCode() == identical.hashCode()
             && identical.hashCode() == identical2.hashCode());
         Assert.assertFalse(arrayWritable.hashCode() == different.hashCode());
         Assert.assertFalse(arrayWritable.hashCode() == 0);
@@ -59,7 +59,7 @@ public class ElementsStringArrayWritableTest {
         Assert.assertTrue(arrayWritable.equals(identical));
         Assert.assertTrue(identical.equals(arrayWritable));
         Assert.assertTrue(arrayWritable.equals(arrayWritable));
-        Assert.assertTrue(arrayWritable.equals(arrayWritable)
+        Assert.assertTrue(arrayWritable.equals(identical)
             && identical.equals(identical2));
         Assert.assertFalse(arrayWritable.equals(different));
         Assert.assertFalse(arrayWritable.equals(null));
