@@ -7,7 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * A child wrapper around {@link ArrayWritable} that permits a client to compare
- * its instances with a simple invocation of {@link ElementsStringArrayWritable#equals}.
+ * its {@link ArrayWritable} instances with a simple invocation of 
+ * {@link ElementsStringArrayWritable#equals}.
  * 
  * @author Gregory Bringman
  * 
@@ -26,7 +27,8 @@ public class ElementsStringArrayWritable extends ArrayWritable {
      * The hash code returned by the {this#hashCode} method is a determined by  
      * an {@link Arrays#deepEquals} call on the ArrayWritable values rendered
      * as {@link String} objects. Array values as strings can preserve the 
-     * exact data of the ArrayWritable.
+     * exact data of the ArrayWritable, just as in the instantiation of 
+     * precision numbers using Strings given requirements of exact scale.
      */
     @Override
     public int hashCode() {

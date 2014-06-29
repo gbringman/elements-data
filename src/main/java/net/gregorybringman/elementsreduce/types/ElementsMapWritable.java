@@ -5,7 +5,8 @@ import org.apache.hadoop.io.Writable;
 
 /**
  * A child wrapper around {@link MapWritable} that permits a client to compare
- * its instances with a simple invocation of {@link ElementsMapWritable#equals}.
+ * its {@link MapWritable} instances with a simple invocation of 
+ * {@link ElementsMapWritable#equals}.
  * 
  * @author Gregory Bringman
  * 
@@ -16,11 +17,11 @@ public class ElementsMapWritable extends MapWritable {
     }
 
     /**
-     * In override, only the keys and values of the map are significant. Since 
-     * equality is the result of a map structure having all the same keys mapped 
-     * to all the same values, this {@link this#hashCode()} implementation hashes 
-     * both the keys and values of all keys, in the sequence of the keys in the 
-     * collection.
+     * Overriding hashcode and equals, only the keys and values of the map are 
+     * significant. Since equality is the result of a map structure having all 
+     * the same keys mapped to all the same values, this {@link this#hashCode()} 
+     * implementation hashes both the keys and values of all keys, in the sequence 
+     * of the keys in the collection.
      * 
      * So, if each key pair were a hashable object, the hash of each would be
      * used to create a hash code for the entire map object.
@@ -39,7 +40,7 @@ public class ElementsMapWritable extends MapWritable {
 
     /**
      * <p>
-     * Equality in this overriden {#equals} method is a result of:
+     * Equality overriding the {#equals} method is a result of:
      * </p>
      * 
      * <ul>

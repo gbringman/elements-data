@@ -8,7 +8,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
- * A (poor person's) context free grammar for the Mayer data on page
+ * A (poor person's) context-free grammar for the Mayer data on page
  * correspondences of versions of the <em>Éléments de Physiologie</em>.
  * 
  * @author Gregory Bringman
@@ -52,7 +52,7 @@ public class ElementsGrammar {
 
     /**
      * Bundle and return all rules of the grammar. Only populate the map the
-     * first time for which {@link ElementsGrammar#grammarAsMap()} is called.
+     * first time that {@link ElementsGrammar#grammarAsMap()} is called.
      * 
      * @return A {@link Map} of the bundled grammar.
      */
