@@ -27,7 +27,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ElementsUtilsTest {
 
-    Writable[] expected;
+    Writable[] expectedRanges;
     ElementsMapWritable entry;
     String expectedText;
 
@@ -38,7 +38,7 @@ public class ElementsUtilsTest {
         ElementsStringArrayWritable two = new ElementsStringArrayWritable(new String[] { "", "30,15-18" });
         
         entry = new ElementsMapWritable();
-        expected = new Writable[] { one, two };
+        expectedRanges = new Writable[] { one, two };
         expectedText = "<div class=\"range\">A\nB\nC\nD</div><div class=\"range\">E\nF\nG\nH</div>";
     }
 
@@ -167,7 +167,7 @@ public class ElementsUtilsTest {
             page = page + "line" + i + "\n";
         }
 
-        ElementsUtils.populateEntry(entry, expected);
+        ElementsUtils.populateEntry(entry, expectedRanges);
         
         assertEquals("Text incorrectly marked up!", expectedText,
             ElementsUtils.markupPages(entry, "A\nB\nC\nD\nE\nF\nG\nH"));
@@ -181,14 +181,14 @@ public class ElementsUtilsTest {
     @Test
     public void populateEntry() {
         ElementsStringArrayWritable range = mock(ElementsStringArrayWritable.class);
-        Writable[] expectedRanges = new Writable[] { range, range };
+        Writable[] expected = new Writable[] { range, range };
 
         ElementsMapWritable emw = mock(ElementsMapWritable.class);
         String [] stringRanges = new String[] { "", "1, 4-6" };
         
         when(range.toStrings()).thenReturn(stringRanges);
         
-        ElementsUtils.populateEntry(emw, expectedRanges);
+        ElementsUtils.populateEntry(emw, expected);
         
         verify(emw).put(new Text("pagewlinerng_1"), ElementsUtils.fetchRange(stringRanges[1]));
     }
@@ -202,14 +202,14 @@ public class ElementsUtilsTest {
     @Test
     public void populateEntryWSerializedKeys() {
         ElementsStringArrayWritable range = mock(ElementsStringArrayWritable.class);
-        Writable[] expectedRanges = new Writable[] { range, range };
+        Writable[] expected = new Writable[] { range, range };
 
         ElementsMapWritable emw = mock(ElementsMapWritable.class);
         String [] stringRanges = new String[] { "", "1, 4-6", "2, 5-7" };
         
         when(range.toStrings()).thenReturn(stringRanges);
         
-        ElementsUtils.populateEntry(emw, expectedRanges);
+        ElementsUtils.populateEntry(emw, expected);
         
         verify(emw).put(new Text("pagewlinerng_1"), ElementsUtils.fetchRange(stringRanges[1]));
         verify(emw).put(new Text("pagewlinerng_2"), ElementsUtils.fetchRange(stringRanges[2]));
