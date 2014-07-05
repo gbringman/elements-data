@@ -32,8 +32,8 @@ public class ElementsMapJob {
         job.setJarByClass(ElementsMapJob.class);
 
         job.setMapperClass(ElementsVersionsMapper.class);
-        job.setCombinerClass(ElementsVersionsReducer.class);
-        job.setReducerClass(ElementsVersionsReducer.class);
+        job.setCombinerClass(ElementsVersionsMarkupReducer.class);
+        job.setReducerClass(ElementsVersionsMarkupReducer.class);
 
         job.setMapOutputKeyClass(IntWritable.class);
         job.setMapOutputValueClass(ElementsStringArrayWritable.class);
