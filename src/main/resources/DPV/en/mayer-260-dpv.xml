@@ -1,0 +1,601 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Elements of Physiology</title>
+                <author>Denis Diderot
+                </author>
+                <respStmt>
+                    <resp>Translated and Encoded by</resp>
+                    <name>Gregory Bringman</name>
+                </respStmt>
+            </titleStmt>
+        </fileDesc>
+    </teiHeader>
+    <text xml:id="d1">
+        <body xml:id="d2">
+            <pb n="293" />
+            <head>Preface</head>
+            <p>
+                <line>Mr *** conceived of the project of drawing up the
+                    elements of physiology while
+                </line>
+                <line>reading the works of Baron de Haller. For several
+                    months, he collected
+                </line>
+                <line>what seemed to him appropriate or essential to put
+                    in these elements:
+                </line>
+                <line>notes and extracts were jotted down on a few
+                    isolated pages. Death having
+                </line>
+                <line>prevented Mr *** from realizing the project, for
+                    which he only happened to
+                </line>
+                <line>prepare the material, these notes are believed to
+                    be united in a single
+                </line>
+                <line>copy. No doubt incomplete, and despite their lack
+                    of order, it is thought
+                </line>
+                <line>that the public will nevertheless receive these
+                    fragments with pleasure,
+                </line>
+                <line>and that one day someone will undertake, after the
+                    plan and ideas of
+                </line>
+                <line>Mr ***, the work he had only sketched.</line>
+            </p>
+            <pb n="295" />
+
+            <!-- Roughly 22 lines per page -->
+
+            <div1 type="section" n="1" xml:id="d3">
+
+                <head>PART I: BEINGS</head>
+
+                <p>
+                    <line>Nature has made only a very small number of
+                        beings that it has varied to
+                    </line>
+                    <line>infinity, perhaps one alone by combination,
+                        mixture, and dissolution out
+                    </line>
+                    <line>of which all others have been formed1.</line>
+                    <line></line>
+                </p>
+                <p>
+                    <line>One calls those beings contradictory whose
+                        organization is inconsistent
+                    </line>
+                    <line>with the rest of the universe. Blind nature,
+                        which produces them,
+                    </line>
+                    <line>exterminates them. She only lets those survive
+                        who can bear to coexist
+                    </line>
+                    <line>with the general order [as her eulogists] 2.
+                    </line>
+                    <line></line>
+                </p>
+                <p>
+                    <line>The elements as isolated molecules have no
+                        properties of mass. Flame is
+                    </line>
+                    <line>without light and heat; water, without
+                        humidity and elasticity; air is
+                    </line>
+                    <line>nothing like we see. That’s why these elements
+                        do nothing in the body
+                    </line>
+                    <line>when combined with other substances3. </line>
+                    <line></line>
+                </p>
+                <p>
+                    <line>It is necessary to classify beings: from the
+                        inert molecule, if it is
+                    </line>
+                    <line>indeed inert, up to the living molecule, to
+                        the animal-plant, to the
+                    </line>
+                    <line>microscopic-animal, to animal, to man.</line>
+                    <line></line>
+                </p>
+                <p>
+                    <line>The chain of beings is not ruptured by the
+                        diversity of its forms. Form
+                    </line>
+                    <line>is often only a mask that deceives, and a
+                        seemingly absent link remains,
+                    </line>
+                    <line>perhaps, in one known being, to whom the
+                        progress of comparative anatomy
+                    </line>
+                    <line>has not yet been able to assign its true
+                        place4.
+                    </line>
+                </p>
+                <pb n="296" />
+                <p>
+                    <line>The butterfly is worm, caterpillar and
+                        butterfly. The mayfly, a chrysalis four
+                    </line>
+                    <line>years. The frog begins as a tadpole. So many
+                        transformations escape us! I see
+                    </line>
+                    <line>some are rapid enough, so why wouldn’t there
+                        be some with much longer periods?
+                    </line>
+                    <line>Who knows what numbed molecules of animals
+                        become after their death?
+                    </line>
+                </p>
+                <p>
+                    <line>The means of accurately classifying beings
+                        therefore can only be the fruit of
+                    </line>
+                    <line>successive labors of a great number of
+                        naturalists: it will be difficult and
+                    </line>
+                    <line>very slow. Let’s pay attention without rushing
+                        to judge.
+                    </line>
+                </p>
+                <p>
+                    <line>In nature, duration is only a succession of
+                        actions; extension is the coexistence
+                    </line>
+                    <line>of simultaneous actions. In understanding,
+                        duration is resolved into movement by
+                    </line>
+                    <line>abstraction, and extension is resolved into
+                        rest, but rest and movement belong to
+                    </line>
+                    <line>one body.</line>
+                </p>
+                <p>
+                    <line>I cannot separate, even by abstraction, the
+                        place and the duration of existence:
+                    </line>
+                    <line>these two properties are therefore essential
+                        to it.
+                    </line>
+                </p>
+                <p>
+                    <line>Vegetation, life or sensibility, and
+                        animalization are three successive operations.
+                    </line>
+                    <line>The vegetable realm could well be and may have
+                        been the first source of the animal
+                    </line>
+                    <line>realm, and have also had its own place in the
+                        mineral realm, which emanates from
+                    </line>
+                    <line>universal heterogeneous matter.</line>
+                </p>
+                <pb n="297" />
+                <div2 type="chapter" n="1.1" xml:id="d4">
+                    <head>Chapter I</head>
+
+                    <div4 type="section">Vegeto-animal
+                    </div4>
+
+                    <p>
+                        <line>What is a plant? What is an animal? a
+                            coordination of infinitely active molecules,
+                        </line>
+                        <line>a chaining (enchainement) of small forces
+                            that everything conspires (concourt) to
+                        </line>
+                        <line>separate. It is not surprising, then, that
+                            these beings pass away so quickly.
+                        </line>
+                    </p>
+                    <p>
+                        <line>Difference of the vegetable realm and the
+                            animal realm.
+                        </line>
+                    </p>
+                    <p>
+                        <line>Mobility in animal principles; fixity in
+                            vegetable principles.
+                        </line>
+                    </p>
+                    <p>
+                        <line>There are two effects of endeavor5 (nisus)
+                            conserved or destroyed. The gelatinous
+                        </line>
+                        <line>substance of both shows a middle state
+                            between animal and plant.
+                        </line>
+                    </p>
+                    <p>
+                        <line>What may produce vinegar, acids and salts,
+                            leeched on substances in fermentation? In
+                        </line>
+                        <line>composites, where endeavor (nisus) is
+                            overabundant. Water destroys endeavor
+                            (nisus),
+                        </line>
+                        <line>isolates its parts, and activates them.
+                        </line>
+                    </p>
+                    <p>
+                        <line>Animalization of the vegetable.</line>
+                    </p>
+                    <p>
+                        <line>A vegetable is produced by heat and
+                            fermentation. Vegetable matter is animalized
+                            in
+                        </line>
+                        <line>a vessel. It is also animalized in me, and
+                            animalized in me, it is revegetalized
+                        </line>
+                        <line>in the vessel; There is only a difference
+                            in forms.
+                        </line>
+                    </p>
+                    <p>
+                        <line>In kneading paste for a long time and
+                            sprinkling it with water often, its
+                            vegetable
+                        </line>
+                        <line>nature is removed and an animal nature is
+                            so approximated that, by such an analysis,
+                        </line>
+                        <line>genuine products are given(mem. Of the
+                            academy of [Bologne]).
+                        </line>
+                    </p>
+                    <pb n="298" />
+                    <p>
+                        <line>Contiguity of the vegetable realm with the
+                            animal realm.
+                    </p>
+                    <p>
+                        <line>In Italy Msr. Beccaria6, and in
+                            Strasbourg, Madame Keissel and Madame Mayer
+                            wanted
+                        </line>
+                        <line>to understand the constituent parts of
+                            flour. They washed it with several liquids.
+                        </line>
+                        <line>They separated it from starch. They
+                            withdrew a substance very much resembling an
+                        </line>
+                        <line>animal substance. Immediately, Mr. Rouelle
+                            in Paris, Mr. Macquer and the most able
+                        </line>
+                        <line>of chemists resumed these experiments, and
+                            took them as far as they could go. They
+                        </line>
+                        <line>found that starch only contained, to put
+                            it nicely, the vegetable parts of the flour;
+                        </line>
+                        <line>that in removing the starch, it remained a
+                            gluten that they called vegeto-animal.
+                        </line>
+                        <line>All these parts are so interrelated, so
+                            connected together that they cannot be
+                        </line>
+                        <line>separated: when starch is removed, it
+                            spreads out in all directions, but when it
+                            is
+                        </line>
+                        <line>abandoned, it folds up on itself, and
+                            takes its initial form again, as does the
+                        </line>
+                        <line>tissue of skin which gradually stretches
+                            out and tightens. If this gluten is burned,
+                        </line>
+                        <line>it crumbles like flesh, and spreads an
+                            odor of animal matter.
+                        </line>
+                    </p>
+                    <p>
+                        <line>Eels are in flour paste, in vinegar, in
+                            nielloed grain, in horned grain*. Open
+                        </line>
+                        <line>small tumors, or galls of ergot, green and
+                            not ripe; open them with a sharp
+                        </line>
+                        <line>and round needle, without penetrating
+                            (offenser) their interior cavity. Drop
+                        </line>
+                        <line>some water there, and you will see eels
+                            inside, but large, living or dead, full
+                        </line>
+                        <line>of eggs or of much smaller eels. They are
+                            colossal in comparison to those found
+                        </line>
+                        <line>in the same, more adult, riper grain, or
+                            in ordinary ergotic grain already dry
+                        </line>
+                        <line>and black. The large ones are mothers;
+                            they are seen laying their tiny eggs
+                        </line>
+                        <line>with a very sensible, non-ambiguous organ
+                            (partie), perfectly characterizing their
+                        </line>
+                        <line>sex.</line>
+                    </p>
+                    <pb n="299" />
+                    <p>
+                        <line>Across the transparent film of these eggs,
+                            a tiny young eel is seen folding itself,
+                        </line>
+                        <line>refolding, stirring, finally, breaking out
+                            of its husk, emerging and moving itself,
+                        </line>
+                        <line>alive and sliding in water. Along with
+                            these mothers, larger males can be seen—by
+                        </line>
+                        <line>the long, conical, mobile organ below
+                            their bodies.
+                        </line>
+                    </p>
+                    <p>
+                        <line>Although dry, these eels take on movement
+                            and life again when moistened by a drop of
+                        </line>
+                        <line>water. Needham has known the phenomenon,
+                            but he does not believe that these eels are
+                        </line>
+                        <line>animals, and makes them vital beings9;
+                            Buffon, living organic molecules; Fontana
+                        </line>
+                        <line>animals; Needham wants them to form either
+                            animals or vegetables united or collected
+                        </line>
+                        <line>according to certain laws.</line>
+                    </p>
+                    <p>
+                        <line>These threads or grain eels examined by
+                            Fontana were so dry, so fragile, that a
+                            sudden
+                        </line>
+                        <line>splash of water, the lightest possible
+                            needle, or a point of a hair having placed
+                            them
+                        </line>
+                        <line>in flour, reduced them to powder (I almost
+                            wish Fontana had finely ground them).
+                        </line>
+                    </p>
+                    <p>
+                        <line>The eel from nielloed grain10 wiggles at
+                            both ends. It lives seven to eight weeks
+                            when
+                        </line>
+                        <line>supplied with water.</line>
+                    </p>
+                    <div6 type="section">Plant-animal.</div6>
+                    <pb n="300" />
+                    <p>
+                        <line>The mushroom, through an analysis of
+                            volatile alkalis, deposits a characteristic
+                            sign
+                        </line>
+                        <line>of the animal realm. The grain of a
+                            mushroom is also long-lived: it oscillates
+                            in
+                        </line>
+                        <line>water, is moved, is agitated, avoids
+                            obstacles and seems to balance between the
+                        </line>
+                        <line>animal realm and the vegetable realm
+                            before being fixed in the latter.
+                        </line>
+                    </p>
+                    <p>
+                        <line>The muscipula dionea plant of Caroline
+                            extends its leaves to the ground in [pairs],
+                            and
+                        </line>
+                        <line>[pivots]. These leaves are covered by
+                            papillae. If a fly rests on a leaf, this
+                            leaf
+                        </line>
+                        <line>and its company are fermented, just as the
+                            oyster sensing and watching its prey, sucks
+                        </line>
+                        <line>on it and only rejects it when it is
+                            exhausted of juices. It is an almost
+                            carnivorous
+                        </line>
+                        <line>plant. I don’t doubt that it should
+                            deposit a volatile alkali under analysis.
+                        </line>
+                    </p>
+                    <p>
+                        <line>There are ambiguous generations emanated
+                            from the animal realm, as there are
+                            ambiguous
+                        </line>
+                        <line>generations emanated from the vegetable
+                            realm.
+                        </line>
+                    </p>
+                    <div7 type="section">Animal-plant.</div7>
+
+                    <p>
+                        <line>Zoophytes have only the feeling of life.
+                            Freshwater polyps have sentiment, life and
+                        </line>
+                        <line>digestion, and are animal-plants11.</line>
+                    </p>
+                    <p>
+                        <line>The reformed polyp tends to acquire its
+                            first form again. Does a thread really
+                            hamper it?
+                        </line>
+                        <line>It plays a part: it (the polyp) remains
+                            and lives reformed as a plant.
+                        </line>
+                    </p>
+                    <pb n="301" />
+                    <p>
+                        <line>Adanson12 was the first who perceived a
+                            peculiar movement in the aquatic plant
+                            called the
+                        </line>
+                        <line>tremella13. He refused to assign life and
+                            sentiment to this plant, and consequently
+                        </line>
+                        <line>animality; he leaves it a plant. Fontana*
+                            makes of this the passage from the vegetable
+                        </line>
+                        <line>realm to the animal realm; according to
+                            him it is at the same time a true plant, a
+                            true
+                        </line>
+                        <line>animal.</line>
+                    </p>
+                    <p>
+                        <line>Where do the movements of the tremella
+                            come from? Neither from water, nor air,
+                            because
+                        </line>
+                        <line>they occur in every sense in the water and
+                            air at rest: and they occur in every way,
+                        </line>
+                        <line>and in an opposite manner to agitated
+                            water.United or separated, the threads
+                            follow opposite
+                        </line>
+                        <line>directions, agitated beside small
+                            corpuscles in rest.
+                        </line>
+                    </p>
+                    <p>
+                        <line>By a particular mechanism? Impossible. A
+                            particular mechanism makes the bird fly, the
+                            fish
+                        </line>
+                        <line>swim: but between these movements and the
+                            infinite variety of spontaneity, there is a
+                            very
+                        </line>
+                        <line>marked difference. Now this infinite
+                            variety that we attribute in other animals
+                            to life,
+                        </line>
+                        <line>sensibility, to spontaneity, we see it all
+                            in the threads of the tremella and in a
+                            certain
+                        </line>
+                        <line>way; because there is neither deceleration
+                            nor cessation, nor interruption for months,
+                            years:
+                        </line>
+                        <line>they last as long as the plant lives and
+                            vegetates. The tremella and its threads are
+                            thus
+                        </line>
+                        <line>living and sensible animals: its organic
+                            parts therefore obey sensibility
+                            (sensibilité).
+                        </line>
+                    </p>
+                    <pb n="302" />
+                    <p>
+                        <line>Dry, it loses its movements; moist it
+                            regains them: it is born, and then dies
+                            discreetly.
+                    </p>
+                    <p>
+                        <line>The tremella is not a simple plant. It is
+                            a mound of small plants, or vegetable
+                            threads,
+                        </line>
+                        <line>which united together, form the plant with
+                            this name.
+                        </line>
+                    </p>
+                    <p>
+                        <line>There is no one who, seeing the phenomena
+                            it offers, and who ignores that its threads
+                            are
+                        </line>
+                        <line>the threads of a vegetable, should not at
+                            once pronounce that these threads are living
+                        </line>
+                        <line>worms. The doubt only arises when you are
+                            told that these threads are portions of
+                        </line>
+                        <line>vegetables, but this doubt quickly
+                            vanishes.
+                        </line>
+                    </p>
+                    <p>
+                        <line>The phenomena (to add) from the
+                            sensitive14.
+                        </line>
+                    </p>
+                    <pb n="303" />
+                    <pb n="304" />
+                    <div8 type="section">Sex of plants</div8>
+                    <p>
+                        <line>In plants there is a particular place that
+                            touching causes the erection and the
+                            effusion of
+                        </line>
+                        <line>seed. This place is not the same for all.
+                            Male plants and female plants are
+                            distinguished.
+                        </line>
+                        <line>There are some hermaphrodites.</line>
+                    </p>
+                    <p>
+                        <line>In the tree, the roots become stems, and
+                            the stems become roots.
+                        </line>
+                    </p>
+                </div2>
+                <div3 type="chapter" n="1.2" xml:id="d5">
+                    <head>Chapter II</head>
+                    Animal.
+                    <p>
+                        <line>The animal, according to some authors, is
+                            a hydraulic machine15. What</line>
+                        <line>foolishness can be spoken following this
+                            one presupposition!</line>
+                    </p>
+                    <p>
+                        <line>The laws of movement of hard bodies are
+                            unknown, because there are not </line>
+                        <line>perfectly hard bodies16. The laws of
+                            movement of elastic bodies are not any more
+                        </line>
+                        <line>certain17, because there are no perfectly
+                            elastic bodies. The laws of movement of
+                            fluid </line>
+                        <line>bodies are everywhere precarious, and the
+                            laws of movement of sensible, animated,
+                        </line>
+                        <line>organized, living, are not even sketched.
+                        </line>
+                    </p>
+                    <p>
+                        <line>He who in the calculus of this last type
+                            of movement omits sensibility </line>
+                        <line>(sensibilité), irritability (irritablité),
+                            life, spontaneity (spontaneité), does not
+                            know what </line>
+                        <line>he does.</line>
+                    </p>
+                    <p>
+                        <line>A rough body acts on a sensible,
+                            organized, animal body; the latter is
+                            conscious </line>
+                        <line>of it, or has the feeling of impression[,
+                            and often the place of impression. It is
+                            tickled </line>
+                        <line>or wounded; it wants or does not want to
+                            be moved. How? By what laws?</line>
+                    </p>
+                </div3>
+            </div1>
+        </body>
+    </text>
+</TEI>
