@@ -6,8 +6,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
 import junit.framework.Assert;
+import net.gregorybringman.elementsreduce.services.TextService;
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
@@ -18,6 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import com.google.common.collect.Maps;
 
 /**
  * Tests the {@link ElementsUtils} class.
@@ -213,5 +218,29 @@ public class ElementsUtilsTest {
         
         verify(emw).put(new Text("pagewlinerng_1"), ElementsUtils.fetchRange(stringRanges[1]));
         verify(emw).put(new Text("pagewlinerng_2"), ElementsUtils.fetchRange(stringRanges[2]));
+    }
+    
+    @Test
+    public void markupFromTEI() {
+        
+        TextService textService = mock(TextService.class);
+        ElementsMapWritable emw = mock(ElementsMapWritable.class);
+        
+        IntWritable pageNo = new IntWritable(293);
+        String page = AbstractTextHelper.tei();
+
+        Map<String, String> versions = Maps.newConcurrentMap();
+        versions.put("DPV", AbstractTextHelper.expectedMarkupDPVOnly());
+        versions.put("L", AbstractTextHelper.expectedMarkupLOnly());
+        
+        when(textService.textFromMayerPage(pageNo)).thenReturn(page);
+        when(textService.versionsFromPageAndModel(page, emw)).thenReturn(versions);
+        
+        Iterator<String> it = versions.values().iterator();
+        
+        String expected = it.next() + it.next();
+        String actual = ElementsUtils.markupFromTEI(pageNo, emw, textService);
+        
+        Assert.assertEquals(expected, actual);
     }
 }

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.gregorybringman.elementsreduce.grammar.ElementsGrammar;
+import net.gregorybringman.elementsreduce.services.TextService;
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
@@ -146,6 +147,22 @@ public class ElementsUtils {
         }
 
         return markedUp;
+    }
+    
+    /*
+     * xpath on fetched text
+     * 
+     */
+    public static String markupFromTEI(IntWritable pageNo, MapWritable pageModel, TextService textService) {
+        String page = textService.textFromMayerPage(pageNo);
+        Map<String, String> versions = textService.versionsFromPageAndModel(page, pageModel);
+        
+        StringBuilder sb = new StringBuilder();
+        for (String version : versions.values()) {
+            sb.append(version);
+        }
+        
+        return sb.toString();
     }
 
     /**
