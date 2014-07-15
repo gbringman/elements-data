@@ -220,6 +220,10 @@ public class ElementsUtilsTest {
         verify(emw).put(new Text("pagewlinerng_2"), ElementsUtils.fetchRange(stringRanges[2]));
     }
     
+    /*
+     * Test that the correct page of DPV and L are retrieved and that they
+     * are concatenated, L after DPV.
+     */
     @Test
     public void markupFromTEI() {
         
@@ -227,7 +231,7 @@ public class ElementsUtilsTest {
         ElementsMapWritable emw = mock(ElementsMapWritable.class);
         
         IntWritable pageNo = new IntWritable(293);
-        String page = AbstractTextHelper.tei();
+        String page = AbstractTextHelper.tei(null);
 
         Map<String, String> versions = Maps.newConcurrentMap();
         versions.put("DPV", AbstractTextHelper.expectedMarkupDPVOnly());
