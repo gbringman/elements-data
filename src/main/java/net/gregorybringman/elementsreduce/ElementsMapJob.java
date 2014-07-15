@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Runs the ElementsVersions map-reduce with an input data set of the format used in
- * {@link elements-data-2012-06-23_pipe_delim.txt}.
+ * {@link elements-data-table-1-Mayer.txt}.
  * 
  * @author Gregory Bringman
  * 
