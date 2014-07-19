@@ -1,9 +1,14 @@
 package net.gregorybringman.elementsreduce;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import net.gregorybringman.elementsreduce.types.ElementsMapWritable;
 import net.gregorybringman.elementsreduce.types.ElementsStringArrayWritable;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
@@ -21,19 +26,21 @@ public class ElementsMapJob {
 
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        
+
         if (args.length != 2) {
             System.err.println("Usage: elementsmap <in> <out>");
             System.exit(2);
         }
 
+        deleteOutput(conf);
+        
         Job job = new Job(conf, "Elements Map");
         job.setNumReduceTasks(1);
         job.setJarByClass(ElementsMapJob.class);
 
         job.setMapperClass(ElementsVersionsMapper.class);
-        job.setCombinerClass(ElementsVersionsMarkupReducer.class);
-        job.setReducerClass(ElementsVersionsMarkupReducer.class);
+        job.setCombinerClass(ElementsVersionsReducer.class);
+        job.setReducerClass(ElementsVersionsReducer.class);
 
         job.setMapOutputKeyClass(IntWritable.class);
         job.setMapOutputValueClass(ElementsStringArrayWritable.class);
@@ -43,7 +50,24 @@ public class ElementsMapJob {
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
-        
+
         System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+
+    private static void deleteOutput(Configuration conf) {
+        Path outputPath = new Path("target/output");
+        try {
+            FileSystem  fs = FileSystem.get(new URI(outputPath.toString()), conf);
+            if (fs.exists(outputPath)) {
+                fs.delete(outputPath, true);
+            }
+            fs.close();
+        }
+        catch (IOException ioe) {
+            throw new RuntimeException("File could not be deleted.", ioe);
+        }
+        catch (URISyntaxException use) {
+            throw new RuntimeException("Invalid path / URI.", use);
+        }
     }
 }
