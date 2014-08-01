@@ -8,7 +8,7 @@ import org.apache.hadoop.io.Text;
 /**
  * A child wrapper around {@link ArrayWritable} that permits a client to compare
  * its {@link ArrayWritable} instances with a simple invocation of 
- * {@link ElementsStringArrayWritable#equals}.
+ * {@link #equals}.
  * 
  * @author Gregory Bringman
  * 
@@ -24,7 +24,7 @@ public class ElementsStringArrayWritable extends ArrayWritable {
 
     /**
      * <p>
-     * The hash code returned by the {this#hashCode} method is a determined by  
+     * The hash code returned by the {#hashCode} method is a determined by  
      * an {@link Arrays#deepEquals} call on the ArrayWritable values rendered
      * as {@link String} objects. Array values as strings can preserve the 
      * exact data of the ArrayWritable, just as in the instantiation of 

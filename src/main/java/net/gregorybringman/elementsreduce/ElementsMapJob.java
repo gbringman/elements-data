@@ -17,7 +17,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Runs the ElementsVersions map-reduce with an input data set of the format used in
- * {@link elements-data-table-1-Mayer.txt}.
+ * &quot;resources/elements-data-table-1-Mayer.txt&quot;
  * 
  * @author Gregory Bringman
  * 
@@ -63,6 +63,9 @@ public class ElementsMapJob {
             }
             fs.close();
         }
+        
+        //TODO: Throw Elements-data exceptions...
+        
         catch (IOException ioe) {
             throw new RuntimeException("File could not be deleted.", ioe);
         }

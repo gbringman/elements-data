@@ -2,6 +2,8 @@ package net.gregorybringman.elementsreduce.services;
 
 import java.util.Map;
 
+import net.gregorybringman.elementsreduce.ElementsVersionsReducer;
+
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
 

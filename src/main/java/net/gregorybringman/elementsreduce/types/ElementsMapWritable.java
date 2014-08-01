@@ -6,7 +6,7 @@ import org.apache.hadoop.io.Writable;
 /**
  * A child wrapper around {@link MapWritable} that permits a client to compare
  * its {@link MapWritable} instances with a simple invocation of 
- * {@link ElementsMapWritable#equals}.
+ * {@link #equals}.
  * 
  * @author Gregory Bringman
  * 
@@ -19,7 +19,7 @@ public class ElementsMapWritable extends MapWritable {
     /**
      * Overriding hashcode and equals, only the keys and values of the map are 
      * significant. Since equality is the result of a map structure having all 
-     * the same keys mapped to all the same values, this {@link this#hashCode()} 
+     * the same keys mapped to all the same values, this {@link #hashCode()} 
      * implementation hashes both the keys and values of all keys, in the sequence 
      * of the keys in the collection.
      * 
