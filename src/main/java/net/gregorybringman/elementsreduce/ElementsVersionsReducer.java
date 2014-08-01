@@ -12,7 +12,7 @@ import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
 
 /**
- * Construct the actual data structure that holds the page correspondences of
+ * Constructs the actual data structure that holds the page correspondences of
  * versions of Éléments de Physiologie.
  * 
  * @author Gregory Bringman
